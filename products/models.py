@@ -27,6 +27,10 @@ class Product(models.Model):
     video_url = models.URLField(null=True,blank=True)
 
 
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_image')
+    image = models.ImageField(upload_to='product_images')
+
 
 class Brand(models.Model):
     name = models.CharField(max_length=120)
