@@ -37,3 +37,9 @@ class Brand(models.Model):
     image = models.ImageField(upload_to='brands')
 
 
+class Review(models.Model):
+    user = models.ForeignKey(Review, on_delete= models.SET_NULL, null=True, blank=True, related_name='review_user')  
+    product = models.ForeignKey(Product, on_delete=models.CASCADE , related_name='review_product')
+    review = models.TextField(max_length=500)
+    rate = models.IntegerField()
+    created_at = models.DateTimeField(default=timezone.now)
