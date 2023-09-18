@@ -4,7 +4,7 @@ Products :
     - images
     - price
     - reviews
-    - flag
+    - flag   [new, feature, sale]
     - brand
     - sku
     - subtitle
