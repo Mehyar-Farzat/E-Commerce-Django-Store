@@ -5,6 +5,14 @@ from taggit.managers import TaggableManager
 
 # Create your models here.
 
+FLAG_CHOICES = (
+    
+    ('sale','sale'),
+    ('feature', 'feature'),
+    ('new', 'new'),
+)
+
+
 
 class Product(models.Model):
     name = models.CharField(max_length=120)
