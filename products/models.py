@@ -6,7 +6,7 @@ from taggit.managers import TaggableManager
 # Create your models here.
 
 FLAG_CHOICES = (
-    
+
     ('sale','sale'),
     ('feature', 'feature'),
     ('new', 'new'),
@@ -19,7 +19,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='product')
     price = models.FloatField()
     flag = models.CharField(max_length=10, choices=FLAG_CHOICES)
-    brand = models.ForeignKey('Brand', on_delete= SET_NULL, related_name=product_brand, null=True, blank=True)
+    brand = models.ForeignKey('Brand', on_delete=models.SET_NULL , related_name='product_brand', null=True, blank=True)
     sku = models.CharField(max_length=50)
     subtitle = models.CharField(max_length=200)
     description = models.TextField(max_length=50000)
@@ -28,6 +28,8 @@ class Product(models.Model):
 
 
 
-
+class Brand(models.Model):
+    name = models.CharField(max_length=120)
+    image = models.ImageField(upload_to='brands')
 
 
