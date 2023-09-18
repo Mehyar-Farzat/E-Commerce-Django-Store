@@ -7,9 +7,9 @@ from taggit.managers import TaggableManager
 
 FLAG_CHOICES = (
 
-    ('sale','sale'),
-    ('feature', 'feature'),
-    ('new', 'new'),
+    ('Sale','Sale'),
+    ('Feature', 'Feature'),
+    ('New', 'New'),
 )
 
 
@@ -25,6 +25,7 @@ class Product(models.Model):
     description = models.TextField(max_length=50000)
     tags = TaggableManager()
     video_url = models.URLField(null=True,blank=True)
+    slug = models.SlugField(null=True,blank=True)
 
 
 class ProductImage(models.Model):
@@ -35,10 +36,11 @@ class ProductImage(models.Model):
 class Brand(models.Model):
     name = models.CharField(max_length=120)
     image = models.ImageField(upload_to='brands')
+    slug = models.SlugField(null=True,blank=True)
 
 
 class Review(models.Model):
-    user = models.ForeignKey(Review, on_delete= models.SET_NULL, null=True, blank=True, related_name='review_user')  
+    user = models.ForeignKey(User, on_delete= models.SET_NULL, null=True, blank=True, related_name='review_user')  
     product = models.ForeignKey(Product, on_delete=models.CASCADE , related_name='review_product')
     review = models.TextField(max_length=500)
     rate = models.IntegerField()
