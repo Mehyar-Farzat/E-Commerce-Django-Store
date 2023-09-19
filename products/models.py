@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -31,6 +32,10 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs ):
+        self.slug = slugify(self.name)
+        super(Product, self).save(*args, **kwargs)
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_image')
@@ -44,6 +49,11 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.name
+
+
+    def save(self, *args, **kwargs ):
+        self.slug = slugify(self.name)
+        super(Brand, self).save(*args, **kwargs)
         
 
 
