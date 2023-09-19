@@ -52,5 +52,9 @@ class Review(models.Model):
     rate = models.IntegerField()
     created_at = models.DateTimeField(default=timezone.now)
 
+   
     def __str__(self):
-        return self.review
+        return str(self.product) + ": " + str(self.review)
+
+    # def __str__(self):    another way to return str for both ( product & review ) 
+        #return f"{self.product }  {self.review}"
