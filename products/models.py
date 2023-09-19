@@ -23,6 +23,7 @@ class Product(models.Model):
     sku = models.CharField(max_length=50)
     subtitle = models.CharField(max_length=200)
     description = models.TextField(max_length=50000)
+    quantity = models.IntegerField()
     tags = TaggableManager()
     video_url = models.URLField(null=True,blank=True)
     slug = models.SlugField(null=True,blank=True)
@@ -43,6 +44,7 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.name
+        
 
 
 class Review(models.Model):
