@@ -27,6 +27,9 @@ class Product(models.Model):
     video_url = models.URLField(null=True,blank=True)
     slug = models.SlugField(null=True,blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_image')
@@ -38,6 +41,9 @@ class Brand(models.Model):
     image = models.ImageField(upload_to='brands')
     slug = models.SlugField(null=True,blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete= models.SET_NULL, null=True, blank=True, related_name='review_user')  
@@ -45,3 +51,6 @@ class Review(models.Model):
     review = models.TextField(max_length=500)
     rate = models.IntegerField()
     created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.review
