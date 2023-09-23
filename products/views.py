@@ -6,11 +6,11 @@ from .models import Product
 
 # Create your views here.
 
-class ProductListView(ListView):
+class ProductList(ListView):
     model = Product
     
 
-class ProductDeleteView(DetailView):
+class ProductDetail(DetailView):
     model = Product
     
 
