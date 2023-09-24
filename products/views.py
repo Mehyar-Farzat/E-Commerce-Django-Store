@@ -25,14 +25,14 @@ class ProductDetail(DetailView):
 
 class BrandList(ListView):
     model = Brand
-
-
-
-
-
-class BrandDetail(DetailView):
-    model = Brand
     
+
+
+
+    
+
+#class BrandDetail(DetailView):
+    #model = Brand
 
     #def get_context_data(self, **kwargs):  # this function to return more details for product such as images,review
         #context = super().get_context_data(**kwargs)
