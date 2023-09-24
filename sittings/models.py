@@ -18,6 +18,7 @@ class Company(models.Model):
     android_app = models.URLField(null=True,blank=True)
     ios_app = models.URLField(null=True,blank=True)
     
+    
 
     def __str__(self):
         return self.name
