@@ -5,6 +5,7 @@ django.setup()
 
 
 from products.models import Product, Brand, Review
+from django.contrib.auth.models import User
 import random
 from faker import Faker
 
@@ -32,13 +33,13 @@ def add_products(n):
         Product.objects.create(
             name = fake.name(),
             image = f"product/{images[random.randint(0,5)]}",
-            price = random.randint(100,9999),
+            price = random.randint(100,500),
             #price = round(random.uniform(50.99,199.99),2),
             flag = flags[random.randint(0,2)],
             brand = Brand.objects.get(id=random.randint(1,50)),
             sku = random.randint(1000,10000000),
-            subtitle = fake.text(max_nb_chars=200),
-            description = fake.text(max_nb_chars=10000),
+            subtitle = fake.text(max_nb_chars=50),
+            description = fake.text(max_nb_chars=200),
             
             quantity = random.randint(5,35),
         )
@@ -51,7 +52,15 @@ def add_products(n):
 def add_reviews(n):
     fake = Faker()
     for x in range(n):
-        pass
+        Review.objects.create(
+            product = Product.objects.get(id=random.randint(1,100)),
+            user = User.objects.get(id=random.randint(1,5)),
+            review = fake.text(max_nb_chars=500),
+            rate = random.randint(1,5),
+        )
+
+    print(f'{n} Reviews added successfully')
+        
     
 
-add_products(100)
+add_reviews(300)

@@ -24,7 +24,7 @@ class Product(models.Model):
     brand = models.ForeignKey('Brand',verbose_name=_('Brand'), on_delete=models.SET_NULL , related_name='product_brand', null=True, blank=True)
     sku = models.CharField(_('SKU'),max_length=50)
     subtitle = models.CharField(_('Subtitle'),max_length=200)
-    description = models.TextField(_('Description'),max_length=50000)
+    description = models.TextField(_('Description'),max_length=200)
     quantity = models.IntegerField(_('Quantity'))
     tags = TaggableManager()
     video_url = models.URLField(_('Video_URL'),null=True,blank=True)
@@ -44,7 +44,7 @@ class ProductImage(models.Model):
 
 
 class Brand(models.Model):
-    name = models.CharField(_('Name'), max_length=120)
+    name = models.CharField(_('Name'), max_length=20)
     image = models.ImageField(_('Image'), upload_to='brands')
     slug = models.SlugField(null=True,blank=True)
 
