@@ -122,7 +122,7 @@
 
                                         {% if page_obj.number == i %}
                                             <li class="page-item"><a class="page-link active" href="#">{{i}}</a></li>
-                                        {% else %}
+                                        {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
                                             <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
                                         {% endif %}
 
@@ -142,6 +142,7 @@
                         </div>
                     </div>
                 {% endif %}
+                
             </div>
         </section>
         <!--=====================================
