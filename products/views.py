@@ -8,10 +8,12 @@ from .models import Product, ProductImage, Review, Brand
 
 class ProductList(ListView):
     model = Product
+    paginate_by = 60
     
 
 class ProductDetail(DetailView):
     model = Product
+    
     
 
     def get_context_data(self, **kwargs):  # this function to return more details for product such as images,review
