@@ -34,12 +34,15 @@ class BrandList(ListView):
 
     
 
-class BrandDetail(DetailView):
-    model = Brand
+# class BrandDetail(DetailView):
+    # model = Brand
 
     #def get_context_data(self, **kwargs):  # this function to return more details for product such as images,review
         #context = super().get_context_data(**kwargs)
         #context["brand_products"] = Product.objects.filter(brand=self.get_object())
         #return context
 
+class BrandDetail(ListView):
+    model = Product
+    template_name = 'products/brand_detail.html'
     
