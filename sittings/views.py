@@ -7,8 +7,10 @@ def home(request):
     
     brands = Brand.objects.all()[:10]
     sale_products =  Product.objects.filter(flag='Sale')[:10]
+    feature_products =  Product.objects.filter(flag='Feature')
     return render(request, 'sittings/home.html', {
         'brands':brands,
         'sale_products':sale_products,
+        'feature_products':feature_products,
 
     })
