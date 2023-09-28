@@ -61,18 +61,18 @@
                 </div>
                 <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 isotope-items">
 
-                    {% for brand in brand_list %}
+                    {% for object in brand_list %}
 
                         <div class="col all vegetables">
                             <div class="brand-wrap">
                                 <div class="brand-media">
-                                    <img src="{{brand.image.url}}" alt="brand">
+                                    <img src="{{object.image.url}}" alt="brand">
                                     <div class="brand-overlay">
                                         <a href="/products/brands/{{object.slug}}"><i class="fas fa-link"></i></a>
                                     </div>
                                 </div>
                                 <div class="brand-meta">
-                                    <h4>{{brand}}</h4>
+                                    <h4>{{object}}</h4>
                                     <p>(45 items)</p>
                                 </div>
                             </div>
