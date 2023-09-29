@@ -63,4 +63,4 @@ def add_reviews(n):
         
     
 
-add_reviews(300)
+add_products(300)
