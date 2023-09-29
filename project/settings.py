@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'taggit' ,
     'django_summernote',
     'sittings',
+    'rest_framework',
 
     
     
