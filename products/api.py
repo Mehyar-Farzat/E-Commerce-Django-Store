@@ -23,11 +23,21 @@ from .models import Product
 
 # Class Based View:
 
-class ProductListAPI(generics.ListAPIView):
+# class ProductListAPI(generics.ListAPIView):
+#     serializer_class = ProductSerializer
+#     queryset = Product.objects.all()
+
+
+# class ProductDetailAPI(generics.RetrieveAPIView):
+#     serializer_class = ProductSerializer
+#     queryset = Product.objects.all()
+
+
+class ProductListAPI(generics.ListCreateAPIView):   # list and create(adding like Editor)
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
+    
 
-
-class ProductDetailAPI(generics.RetrieveAPIView):
+class ProductDetailAPI(generics.RetrieveUpdateAPIView):   # udate and edite date
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
