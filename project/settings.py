@@ -37,13 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
+
+    'taggit' ,
+    'django_summernote',
     'rest_framework',
+    
     # my apps
 
     'products',
-    'taggit' ,
-    'django_summernote',
     'sittings',
     
 
