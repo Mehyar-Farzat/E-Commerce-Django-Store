@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import ProductSerializer
 from .models import Product
+from .mypagination import CustomPagination
 
 
 # Functions:
@@ -28,6 +29,7 @@ from .models import Product
 class ProductListAPI(generics.ListAPIView):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
+    pagination_class = CustomPagination
 
 
 class ProductDetailAPI(generics.RetrieveAPIView):
