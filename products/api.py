@@ -5,6 +5,7 @@ from .serializers import ProductSerializer
 from .models import Product
 
 
+# Functions:
 
 # @api_view(['GET'])
 # def product_list_api(request):
@@ -13,31 +14,37 @@ from .models import Product
 #     return Response({'products': data})
 
 
-
 # @api_view(['GET'])
 # def product_detail_api(request, product_id):
 #     product = Product.objects.get(id=product_id)
 #     data = ProductSerializer(product, context= {'request': request}).data
 #     return Response({'product': data})
 
+#------------------------------------------------------------------------------------#
+
 
 # Class Based View:
 
-# class ProductListAPI(generics.ListAPIView):
+class ProductListAPI(generics.ListAPIView):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+
+
+class ProductDetailAPI(generics.RetrieveAPIView):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+
+
+# class ProductDetailAPI(generics.RetrieveUpdateAPIView):   # update and edite date
 #     serializer_class = ProductSerializer
 #     queryset = Product.objects.all()
 
 
-# class ProductDetailAPI(generics.RetrieveAPIView):
+# class ProductListAPI(generics.ListCreateAPIView):   # list and create(adding like Editor)
 #     serializer_class = ProductSerializer
 #     queryset = Product.objects.all()
 
 
-class ProductListAPI(generics.ListCreateAPIView):   # list and create(adding like Editor)
-    serializer_class = ProductSerializer
-    queryset = Product.objects.all()
-    
-
-class ProductDetailAPI(generics.RetrieveUpdateAPIView):   # udate and edite date
-    serializer_class = ProductSerializer
-    queryset = Product.objects.all()
+# class ProductDetailAPI(generics.RetrieveUpdateDestroyAPIView):   # update and edite and delete data
+#     serializer_class = ProductSerializer
+#     queryset = Product.objects.all()
