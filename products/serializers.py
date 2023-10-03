@@ -1,15 +1,23 @@
 from rest_framework import serializers
-from .models import Product, Brand
+from .models import Product, Brand , Review
+
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = '__all__'
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    reviews_count = serializers.SerializerMethodField()
+    reviews = ReviewSerializer(many=True, source='review_product')   # get reviews of product
+    reviews_count = serializers.SerializerMethodField()              # grt count of reviews
     class Meta:
         model = Product
         fields = '__all__'
 
 
-    def get_reviews_count(self,object):                         # count reviews of exiting product
+    def get_reviews_count(self,object):                         # get count reviews of exiting product
         reviews_count = object.review_product.all().count()
         return reviews_count
 
