@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import ProductSerializer, BrandSerializer
+from .serializers import ProductListSerializer, ProductDetailSerializer,  BrandSerializer
 from .models import Product, Brand
 from .mypagination import CustomPagination
 
@@ -27,13 +27,13 @@ from .mypagination import CustomPagination
 # Class Based View:
 
 class ProductListAPI(generics.ListAPIView):
-    serializer_class = ProductSerializer
+    serializer_class = ProductListSerializer
     queryset = Product.objects.all()
     pagination_class = CustomPagination
 
 
 class ProductDetailAPI(generics.RetrieveAPIView):
-    serializer_class = ProductSerializer
+    serializer_class = ProductDetailSerializer
     queryset = Product.objects.all()
 
 
