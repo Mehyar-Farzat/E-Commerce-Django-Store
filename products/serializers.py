@@ -11,9 +11,13 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class BrandSerializer(serializers.ModelSerializer):
+    products = ProductSerializer(many=True,source='product_brand') # show products in brand detail
     class Meta:
         model = Brand
         fields = '__all__'
+
+
+
         
 
 
