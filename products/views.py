@@ -19,7 +19,7 @@ class ProductDetail(DetailView):
     def get_context_data(self, **kwargs):  # this function to return more details for product such as images,review
         context = super().get_context_data(**kwargs)
         context["product_images"] = ProductImage.objects.filter(product=self.get_object())
-        context["product_review"] = Review.objects.filter(product=self.get_object())
+        context['reviews'] = Review.objects.filter(product=self.get_object())
         return context
 
 
