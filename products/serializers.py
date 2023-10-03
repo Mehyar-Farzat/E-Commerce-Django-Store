@@ -10,6 +10,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    brand = serializers.StringRelatedField()                         # return brand name - not id 
     reviews = ReviewSerializer(many=True, source='review_product')   # get reviews of product
     reviews_count = serializers.SerializerMethodField()              # get count of reviews
     avg_rate = serializers.SerializerMethodField()                   # get Avg
