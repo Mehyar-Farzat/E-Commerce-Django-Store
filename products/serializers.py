@@ -47,15 +47,19 @@ class ProductDetailSerializer(serializers.ModelSerializer):          # create se
 
 
 
-class BrandSerializer(serializers.ModelSerializer):
-    products = ProductListSerializer(many=True,source='product_brand') # show products in brand detail
+class BrandListSerializer(serializers.ModelSerializer):         # create serializer for brand list
+    
     class Meta:
         model = Brand
         fields = '__all__'
 
 
 
-        
+class BrandDetailSerializer(serializers.ModelSerializer):      # create serializer for brand detail
+    products = ProductListSerializer(many=True,source='product_brand') # show products in brand detail
+    class Meta:
+        model = Brand
+        fields = '__all__'       
 
 
 
