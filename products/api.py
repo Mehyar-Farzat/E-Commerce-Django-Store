@@ -6,6 +6,7 @@ from rest_framework import filters
 from .serializers import ProductListSerializer, ProductDetailSerializer, BrandListSerializer, BrandDetailSerializer
 from .models import Product, Brand
 from .mypagination import CustomPagination
+from .myfilters import ProductFilter
 
 
 # Functions:
@@ -37,6 +38,7 @@ class ProductListAPI(generics.ListAPIView):
     search_fields = ['name', 'tags']
     filterset_fields = ['brand', 'flag']
     ordering_fields = ['price']
+    filterset_class = ProductFilter                     # custom filter
 
 
 class ProductDetailAPI(generics.RetrieveAPIView):
