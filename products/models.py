@@ -48,6 +48,7 @@ class Brand(models.Model):
     image = models.ImageField(_('Image'), upload_to='brands')
     slug = models.SlugField(null=True,blank=True)
 
+
     def __str__(self):
         return self.name
 
