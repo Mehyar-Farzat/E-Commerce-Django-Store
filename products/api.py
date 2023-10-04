@@ -33,9 +33,10 @@ class ProductListAPI(generics.ListAPIView):
     queryset = Product.objects.all()
     pagination_class = CustomPagination
     #filter_backends = [DjangoFilterBackend]
-    filter_backends = [filters.SearchFilter, DjangoFilterBackend]   # filter and search
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]   # filter and search and ordering filters
     search_fields = ['name', 'tags']
     filterset_fields = ['brand', 'flag']
+    ordering_fields = ['price']
 
 
 class ProductDetailAPI(generics.RetrieveAPIView):
