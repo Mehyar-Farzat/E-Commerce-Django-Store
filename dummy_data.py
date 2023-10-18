@@ -33,7 +33,7 @@ def add_products(n):
         Product.objects.create(
             name = fake.name(),
             image = f"product/{images[random.randint(0,5)]}",
-           # price = random.randint(100,500),
+           #price = random.randint(100,500),
             price = round(random.uniform(99.99,599.99),2),
             flag = flags[random.randint(0,2)],
             brand = Brand.objects.get(id=random.randint(1,50)),

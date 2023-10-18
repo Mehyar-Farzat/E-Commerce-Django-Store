@@ -21,7 +21,7 @@ class Product(models.Model):
     image = models.ImageField(_('Image'),upload_to='product')
     price = models.FloatField(_('Price'))
     flag = models.CharField(_('Flag'),max_length=10, choices=FLAG_CHOICES)
-    brand = models.ForeignKey('Brand',verbose_name=_('Brand'), on_delete=models.SET_NULL , related_name='product_brand', null=True, blank=True)
+    brand = models.ForeignKey('Brand', verbose_name=_('Brand'), on_delete=models.SET_NULL , related_name='product_brand', null=True, blank=True)
     sku = models.CharField(_('SKU'),max_length=50)
     subtitle = models.CharField(_('Subtitle'),max_length=200)
     description = models.TextField(_('Description'),max_length=200)
