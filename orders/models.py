@@ -40,7 +40,7 @@ class Coupon(models.Model):
     code = models.CharField(max_length=15)
     start_date = models.DateField(default=timezone.now)
     #valid_date = models.DateField(default=timezone.now) # the user will be choise the date of expierd manually
-    valid_date = models.DateField(null=True,blank=True) # to use it in a save function
+    valid_date = models.DateField(null=True,blank=True) # change valid_date to use it below in a save function
     quantity = models.IntegerField()
     discount = models.FloatField()
 
