@@ -23,6 +23,8 @@ class Order(models.Model):
     code = models.CharField(max_length=8, default=generate_code)
     order_time = models.DateTimeField(default=timezone.now)
     delivery_time = models.DateTimeField(null=True, blank=True)
+    coupon = models.ForeignKey(related_name='order_coupon', on_delete=models.SET_NULL)
+    order_total_discount = models.FloatField(null=True, blank=True)
 
 
 
