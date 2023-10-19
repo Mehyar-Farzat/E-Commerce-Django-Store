@@ -31,3 +31,10 @@ class OrderDetail(models.Model):
     price = models.FloatField()
     total = models.FloatField()
 
+
+class Coupon(models.Model):
+    code = models.CharField(max_length=15)
+    start_date = models.DateField(default=timezone.now)
+    valid_date = models.DateField(default=timezone.now) # the user will be choise the date of expierd
+    quantity = models.IntegerField()
+    discount = models.FloatField()
