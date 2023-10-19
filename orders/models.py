@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from products.models import Product
 from utils.generate_code import generate_code
+import datetime
+
 
 
 ORDER_STATUS = (
@@ -35,6 +37,14 @@ class OrderDetail(models.Model):
 class Coupon(models.Model):
     code = models.CharField(max_length=15)
     start_date = models.DateField(default=timezone.now)
-    valid_date = models.DateField(default=timezone.now) # the user will be choise the date of expierd
+    #valid_date = models.DateField(default=timezone.now) # the user will be choise the date of expierd manually
+    valid_date = models.DateField(null=True,blank=True) # to use it in a save function
     quantity = models.IntegerField()
     discount = models.FloatField()
+
+
+
+    def save(self, *args, **kwargs ):
+        week = datetime.timedelta(days=7)            # using timedelta to create a spicific time (ex: 7 dayes)
+        self.valid_date = self.start_date + week
+        super(Coupon, self).save(*args, **kwargs)
