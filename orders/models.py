@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from products.models import Product
 from utils.generate_code import generate_code
 
 
@@ -22,4 +23,11 @@ class Order(models.Model):
     delivery_time = models.DateTimeField(null=True, blank=True)
 
 
+
+class OrderDetail(models.Model):
+    order = models.ForeignKey(Order, related_name='order_detail', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='orderdetail_product', on_delete= models.SET_NULL, null=True,blank=True)
+    quantity = models.IntegerField()
+    price = models.FloatField()
+    total = models.FloatField()
 
