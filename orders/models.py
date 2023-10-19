@@ -6,10 +6,10 @@ from utils.generate_code import generate_code
 
 ORDER_STATUS = (
 
-    ('Recieved') , ('Recieved'),
-    ('Processed') , ('Processed'),
-    ('shipped') , ('Shipped'),
-    ('Deliverd') , ('Deliverd'),
+    ('Recieved' , 'Recieved'),
+    ('Processed' , 'Processed'),
+    ('shipped' , 'Shipped'),
+    ('Deliverd' , 'Deliverd'),
 
 )
 
@@ -20,3 +20,6 @@ class Order(models.Model):
     code = models.CharField(max_length=8, default=generate_code)
     order_time = models.DateTimeField(default=timezone.now)
     delivery_time = models.DateTimeField(null=True, blank=True)
+
+
+
