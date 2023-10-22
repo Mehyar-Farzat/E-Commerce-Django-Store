@@ -72,3 +72,7 @@ class Coupon(models.Model):
         week = datetime.timedelta(days=7)            # using timedelta to create a spicific time (ex: 7 dayes)
         self.valid_date = self.start_date + week
         super(Coupon, self).save(*args, **kwargs)
+
+
+
+
