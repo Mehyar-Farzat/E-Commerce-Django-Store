@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import order_list
+from .views import order_list, checkout
 
 
 
@@ -7,6 +7,7 @@ from .views import order_list
 urlpatterns = [
 
     path('', order_list),
+    path('checkout' , checkout),
 
     
 ]
