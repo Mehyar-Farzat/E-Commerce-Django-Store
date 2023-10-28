@@ -12,7 +12,7 @@ def order_list(request):
 
 def checkout(request):
 
-    return render(request, 'orders/checkout.html' {
+    return render(request, 'orders/checkout.html', {
 
-        
+
     })
