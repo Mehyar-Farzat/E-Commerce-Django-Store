@@ -7,3 +7,12 @@ from .models import Order, OrderDetail, Cart, CartDetail
 def order_list(request):
     orders = Order.objects.all()
     return render(request, 'orders/orders.html', {'orders' : orders})
+
+
+
+def checkout(request):
+
+    return render(request, 'orders/checkout.html' {
+
+        
+    })
