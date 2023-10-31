@@ -12,7 +12,7 @@ def order_list(request):
 
 def checkout(request):
     cart = Cart.objects.get(user=request.user, status='inprogress')
-    cart_detail = Cart.objects.get(cart=cart)
+    cart_detail = CartDetail.objects.filter(cart=cart)
 
     return render(request, 'orders/checkout.html', {
 
