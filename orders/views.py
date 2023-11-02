@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Order, OrderDetail, Cart, CartDetail
+from .models import Order, OrderDetail, Cart, CartDetail, Coupon
 from sittings.models import Deliveryfee
 
 # Create your views here.
@@ -22,7 +22,7 @@ def checkout(request):
     if request.method== 'POST':
         code = request.POST['coupon_code']
         #code = request.POST.get('coupon_code')  another way to get coupon
-
+        coupon = Coupon.objects.get(code=code)  # to get a code of coupon
 
 
     return render(request, 'orders/checkout.html', {
