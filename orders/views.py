@@ -21,6 +21,7 @@ def checkout(request):
 
     if request.method== 'POST':
         code = request.POST['coupon_code']
+        #code = request.POST.get('coupon_code')  another way to get coupon
 
 
 
