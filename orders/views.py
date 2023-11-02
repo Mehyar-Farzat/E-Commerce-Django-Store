@@ -19,6 +19,9 @@ def checkout(request):
     total = sub_total + delivery_fee
     discount = 0
 
+    if request.method== 'POST':
+        code = request.POST['coupon_code']
+
 
 
     return render(request, 'orders/checkout.html', {
