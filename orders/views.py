@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .models import Order, OrderDetail, Cart, CartDetail, Coupon
@@ -23,9 +24,11 @@ def checkout(request):
     if request.method== 'POST':
         code = request.POST['coupon_code']
         #code = request.POST.get('coupon_code')  another way to get coupon
-        coupon = Coupon.objects.get(code=code)  # to get a code of coupon
+        #coupon = Coupon.objects.get(code=code)  # to get a code of coupon, but if there is no coupon, the site will be down
         coupon = get_object_or_404(Coupon, code=code) # to return error 404 if there is no coupon
 
+        if coupon and coupon.quantity > 0 :  # if there is a coupon and enough quantity
+            today_date = datetime.datetime.today().date()
     return render(request, 'orders/checkout.html', {
 
         'cart' : cart,

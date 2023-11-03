@@ -24,7 +24,7 @@ class Order(models.Model):
     order_time = models.DateTimeField(default=timezone.now)
     delivery_time = models.DateTimeField(null=True, blank=True)
     coupon = models.ForeignKey('Coupon', related_name='order_coupon', on_delete=models.SET_NULL, null=True,blank=True)
-    order_total_discount = models.FloatField(null=True, blank=True)
+    cart_total_discount = models.FloatField(null=True, blank=True)
 
 
 
@@ -47,7 +47,7 @@ class Cart(models.Model):
     user = models.ForeignKey(User, related_name='cart_owner', on_delete=models.SET_NULL,null=True,blank=True)
     status = models.CharField(max_length=15, choices=CART_STATUS, default='Inprogress')
     coupon = models.ForeignKey('Coupon', related_name='cart_coupon', on_delete=models.SET_NULL, null=True,blank=True)
-    order_total_discount = models.FloatField(null=True, blank=True)
+    cart_total_discount = models.FloatField(null=True, blank=True)
 
 
     def cart_total(self):
