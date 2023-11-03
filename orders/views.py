@@ -41,10 +41,18 @@ def checkout(request):
                 cart.cart_total_discount = sub_total
                 cart.save()
 
+                return render(request, 'orders/checkout.html', {
+
+                        'cart' : cart,
+                        'cart_detail' : cart_detail,
+                        'delivery_fee' : delivery_fee,
+                        'sub_total' : round(sub_total, 2),
+                        'total' : total,
+                        'discount' : round(coupon_value, 2)
+                    })
 
 
 
-                
     return render(request, 'orders/checkout.html', {
 
         'cart' : cart,
@@ -53,6 +61,4 @@ def checkout(request):
         'sub_total' : sub_total,
         'total' : total,
         'discount' : discount
-
-
     })
