@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from .models import Order, OrderDetail, Cart, CartDetail, Coupon
 from sittings.models import Deliveryfee
 
@@ -23,7 +24,7 @@ def checkout(request):
         code = request.POST['coupon_code']
         #code = request.POST.get('coupon_code')  another way to get coupon
         coupon = Coupon.objects.get(code=code)  # to get a code of coupon
-
+        coupon = get_object_or_404(Coupon, code=code) # to return error 404 if there is no coupon
 
     return render(request, 'orders/checkout.html', {
 
