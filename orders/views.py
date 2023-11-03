@@ -29,10 +29,21 @@ def checkout(request):
 
         if coupon and coupon.quantity > 0 :  # if there is a coupon and enough quantity
             today_date = datetime.datetime.today().date()
-            if today_date >= coupon.start_date and today_date <= coupon.valid_date: # check if the coupon is in a date
+            if today_date >= coupon.start_date and today_date <= coupon.valid_date: # check if the coupon is up to date
                 coupon_value = sub_total / 100*coupon.discount # get the value of this coupon
                 sub_total = sub_total - coupon_value # the new sub total after discount
                 total = sub_total + delivery_fee     # the new total after discount
+
+
+                # save coupon
+
+                cart.coupon = coupon
+                cart.cart_total_discount = sub_total
+                cart.save()
+
+
+
+
                 
     return render(request, 'orders/checkout.html', {
 
