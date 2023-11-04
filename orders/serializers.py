@@ -10,6 +10,11 @@ class CartDetailSerializer(serializers.ModelSerializer):
 
 
 
+class CartSerializer(serializers.ModelSerializer):
+    cart_detail = CartDetailSerializer(many=True)
+    class Meta:
+        model = Cart
+        fields = '__all__'
 
 
     
