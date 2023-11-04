@@ -15,6 +15,7 @@ urlpatterns = [
     path('brands/<slug:slug>', BrandDetail.as_view()),
     path('api/list', ProductListAPI.as_view()),                   # path for CBV
     path('api/list/<int:pk>', ProductDetailAPI.as_view()),        # path for CBV
+    
     #path('api/list/brands', BrandListAPI.as_view()),                   
     #path('api/list/brands/<int:pk>', BrandDetailAPI.as_view()),
 
