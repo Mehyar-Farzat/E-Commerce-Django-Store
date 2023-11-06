@@ -14,6 +14,10 @@ class CartDetailCreateDeleteAPI(generics.GenericAPIView):
         data = CartSerializer(cart).data
         return Response({'Cart' : data})
 
+    
+    def post(self,request,*args, **kwargs):
+        user= User.objects.get(username=self.kwargs['username'])
+
 
    # delete an item in a cart
     def delete(self,request,*args, **kwargs):
