@@ -13,3 +13,10 @@ class CartDetailCreateDeleteAPI(generics.GenericAPIView):
         cart , created = Cart.objects.get_or_create(user=user, status='inprogress') # checking if this user has a cart, if not, create one
         data = CartSerializer(cart).data
         return Response({'Cart' : data})
+
+
+   # delete an item in a cart
+    def delete(self,request,*args, **kwargs):
+        user = User.objects.get(username=self.kwargs['username'])
+        product = Product.objects.get(id=request.POST['product_id']) # get the id of a product
+        cart = Cart.objects.get(user=user, status='inprogress') # get a cart
