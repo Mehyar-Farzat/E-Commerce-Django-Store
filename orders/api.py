@@ -22,5 +22,5 @@ class CartDetailCreateDeleteAPI(generics.GenericAPIView):
         cart = Cart.objects.get(user=user, status='inprogress') # get a cart
 
         cart_detail = CartDetail.objects.get(cart=cart,product=product)  # get a product of exiting cart
-        
+        cart_detail.delete()
         
