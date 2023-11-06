@@ -20,3 +20,7 @@ class CartDetailCreateDeleteAPI(generics.GenericAPIView):
         user = User.objects.get(username=self.kwargs['username'])
         product = Product.objects.get(id=request.POST['product_id']) # get the id of a product
         cart = Cart.objects.get(user=user, status='inprogress') # get a cart
+
+        cart_detail = CartDetail.objects.get(cart=cart,product=product)  # get a product of exiting cart
+        
+        
