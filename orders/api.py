@@ -41,6 +41,15 @@ class CartDetailCreateDeleteAPI(generics.GenericAPIView):
         cart_detail.delete()
         return Response ({'message':'product was deleted successfully'})
 
-class OrderListAPI(generics.RetrieveAPIView):
+        
+
+class OrderListAPI(generics.ListAPIView):
     queryset= Order.objects.all()
     serializer_class = OrderListSerializer
+
+# return all orders that belong to the exiting user
+    def list(self,request,*args, **kwargs):
+        user = User.objects.get(username=self.kwargs['username'])
+        queryset = self.get_queryset().filter(user=user)
+        data = OrderListSerializer(queryset,many=True).data
+        return Response(data)
