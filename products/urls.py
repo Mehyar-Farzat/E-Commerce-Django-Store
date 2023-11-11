@@ -7,8 +7,8 @@ from .api import ProductListAPI, ProductDetailAPI #BrandListAPI, BrandDetailAPI 
 
 
 urlpatterns = [
-    
-    path('debug/', mydebug),
+
+    path('debug', mydebug),
     path('', ProductList.as_view()),
     path('brands/', BrandList.as_view()),
     path('brands/<slug:slug>', BrandDetail.as_view()),
