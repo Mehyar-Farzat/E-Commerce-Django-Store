@@ -4,6 +4,12 @@ from .models import Product, ProductImage, Review, Brand
 
 
 
+def mydebug(request):
+    data = Product.objects.all()
+    return render(request, 'products/debug.html', {'data': data})
+    
+
+
 # Create your views here.
 
 class ProductList(ListView):
