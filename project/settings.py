@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'rest_framework',
     'django_filters',
+    "debug_toolbar",
     
     # my apps
 
