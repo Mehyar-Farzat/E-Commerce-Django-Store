@@ -2,8 +2,10 @@ from rest_framework import generics
 from rest_framework.response import Response
 from .serializers import CartSerializer, OrderListSerializer, OrderDetailSerializer
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from products.models import Product, Brand
 from .models import Cart, CartDetail, Order, OrderDetail, Coupon
+import datetime
 
 
 class CartDetailCreateDeleteAPI(generics.GenericAPIView):
@@ -57,3 +59,26 @@ class OrderListAPI(generics.ListAPIView):
 class OrderDetailAPI(generics.RetrieveAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderListSerializer
+
+
+class ApplyCouponAPI(generics.GenericAPIView):
+
+    def post(self,request,*args, **kwargs):
+        user = User.objects.get(username=self.kwargs['username'])
+        coupon = get_object_or_404(Coupon, code=request.data['coupon_code'])
+        cart = Cart.objects.get(user=user, status='inprogress')
+        if coupon and coupon.quantity > 0:
+            today_date = datetime.datetime.today().date()
+            if today_date >= coupon.start_date and today_date <= coupon.valid_date:
+                coupon_value = sub_total() / 100*coupon.discount
+                sub_total = sub_total() - coupon_value
+                cart.coupon = coupon
+                cart.order_total_discount = sub_total
+                coupon.quantity -= 1
+                cart.save()
+                coupon.save()
+                return Response({'message' : 'coupon was applied successfully'})
+        
+            return Response({'message' : 'coupon was not applied successfully'})
+
+    return Response({'message' : 'coupon is not valid'})
