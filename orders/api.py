@@ -78,7 +78,39 @@ class ApplyCouponAPI(generics.GenericAPIView):
                 cart.save()
                 coupon.save()
                 return Response({'message' : 'coupon was applied successfully'})
-        
             return Response({'message' : 'coupon was not applied successfully'})
+        #return Response({'message' : 'coupon is not valid'})
 
-    return Response({'message' : 'coupon is not valid'})
+
+class OrderCreateAPI(generics.GenericAPIView):
+    
+        def post(self,request,*args, **kwargs):
+            user = User.objects.get(username=self.kwargs['username'])
+            cart = Cart.objects.get(user=user, status='inprogress')
+            cart_detail = CartDetail.objects.filter(cart=cart)
+
+            # create a new order ( from cart to order)
+
+            new_order = Order.objects.create(
+                
+                user=user, 
+                coupon= cart.coupon,
+                order_total_discount =cart.order_total_discount,
+                
+                )
+
+            # create order detail ( from cart detail to order detail)
+
+            for object in cart_detail():
+                OrderDetail.objects.create(
+
+                    order= new_order, 
+                    product= object.product, 
+                    quantity= object.quantity, 
+                    price= object.product.price, 
+                    total= object.total
+
+                    )
+            cart.status = 'completed'
+            cart.save()
+            return Response({'message' : 'order was created successfully'})
