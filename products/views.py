@@ -13,6 +13,8 @@ def mydebug(request):
     data = Product.objects.filter(price__range=[100, 150])  # range = between 100 and 150
     data = Product.objects.filter(name__contains='Smith')  # contains = contains 'Smith'
     data = Product.objects.filter(name__icontains='Smith')  # icontains = contains 'Smith' (case insensitive)
+    data = Product.objects.filter(name__startswith='Smith')  # startswith = starts with 'Smith'
+    data = Product.objects.filter(name__endswith='Smith')  # endswith = ends with 'Smith'
     
 
 
