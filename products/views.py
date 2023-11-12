@@ -39,7 +39,9 @@ def mydebug(request):
     data = Product.objects.values('name', 'price')  # select
     data = Product.objects.values_list('name', 'price')  # select
     data = Product.objects.only('name', 'price')  # select
-    
+    data = Product.objects.select_related('brand')  # join  # select_related() is for ForeignKey and OneToOneField
+    data = Product.objects.prefetch_related('brand').all()  # join # prefetch_related() is for ManyToManyField
+
 
 
 
