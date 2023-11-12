@@ -28,6 +28,7 @@ def mydebug(request):
     data = Product.objects.order_by('-price')  # order by descending
     data = Product.objects.order_by('price', '-name')  # order by multiple fields
     data = Product.objects.order_by('price').reverse()  # reverse order
+    data = Product.objects.order_by('?')  # random order
 
 
     
