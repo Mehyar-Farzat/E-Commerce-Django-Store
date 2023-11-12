@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Product, ProductImage, Review, Brand
+from django.db.models import Q
 
 
 
