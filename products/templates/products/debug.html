@@ -8,11 +8,15 @@
 <body>
     <ul>
 
-        {% for object in data  %}
+        
+        <li>{{data}}</li>
+        
+            {% comment %} 
+                        {% for object in data  %}
 
-            <li>{{ object.name }} - {{object.price}}</li>
+                            <li>{{ object.name }} - {{object.price}}</li>
 
-        {% endfor %}
+                        {% endfor %} {% endcomment %}
         
         
     </ul>
