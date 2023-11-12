@@ -24,6 +24,11 @@ def mydebug(request):
     data = Product.objects.filter(Q(price__lt=300) & ~Q(name__contains='Smith')) # AND NOT
     data = Product.objects.filter(quantity=F('price'))  # F() expressions
     data = Product.objects.filter(price__gt=F('quantity') * 5)  # F() expressions
+    data = Product.objects.order_by('price')  # order by
+    data = Product.objects.order_by('-price')  # order by descending
+    
+
+
 
 
          
