@@ -36,7 +36,9 @@ def mydebug(request):
     data = Product.objects.all()[:10:2]  # limit
     data = Product.objects.all()[::2]  # limit
     data = Product.objects.all()[10::2]  # offset
-    
+    data = Product.objects.values('name', 'price')  # select
+    data = Product.objects.values_list('name', 'price')  # select
+
 
 
 
