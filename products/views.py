@@ -10,6 +10,7 @@ def mydebug(request):
     data = Product.objects.filter(price__gte=9000)  # gte = greater than or equal 9000
     data = Product.objects.filter(price__lt=300)   # lt = less than 300
     data = Product.objects.filter(price__lte=200)  # lte = less than or equal 200
+    data = Product.objects.filter(price__range=[100, 150])  # range = between 100 and 150
 
     return render(request, 'products/debug.html', {'data': data})
     
