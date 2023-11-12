@@ -30,7 +30,16 @@ def mydebug(request):
     data = Product.objects.order_by('price').reverse()  # reverse order
     data = Product.objects.order_by('?')  # random order
     data = Product.objects.all()[:10]  # limit
+    data = Product.objects.all()[10:20]  # offset
+    data = Product.objects.all()[10:20:2]  # offset and limit
+    data = Product.objects.all()[10:]  # offset
+    data = Product.objects.all()[:10:2]  # limit
+    data = Product.objects.all()[::2]  # limit
+    data = Product.objects.all()[10::2]  # offset
     
+
+
+
 
 
 
