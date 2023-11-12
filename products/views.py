@@ -15,6 +15,8 @@ def mydebug(request):
     data = Product.objects.filter(name__icontains='Smith')  # icontains = contains 'Smith' (case insensitive)
     data = Product.objects.filter(name__startswith='Smith')  # startswith = starts with 'Smith'
     data = Product.objects.filter(name__endswith='Smith')  # endswith = ends with 'Smith'
+    data = Product.objects.filter(name__isnull=True)  # isnull = is null
+         
     
 
 
