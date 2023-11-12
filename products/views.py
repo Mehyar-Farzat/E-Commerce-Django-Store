@@ -5,7 +5,11 @@ from .models import Product, ProductImage, Review, Brand
 
 
 def mydebug(request):
-    data = Product.objects.all()
+    #data = Product.objects.all()
+    data = Product.objects.filter(price__gt=9000)
+
+
+
     return render(request, 'products/debug.html', {'data': data})
     
 
