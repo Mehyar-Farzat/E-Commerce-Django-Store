@@ -26,6 +26,7 @@ def mydebug(request):
     data = Product.objects.filter(price__gt=F('quantity') * 5)  # F() expressions
     data = Product.objects.order_by('price')  # order by
     data = Product.objects.order_by('-price')  # order by descending
+    data = Product.objects.order_by('price', '-name')  # order by multiple fields
     
 
 
