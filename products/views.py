@@ -19,6 +19,7 @@ def mydebug(request):
     data = Product.objects.filter(name__isnull=True)  # isnull = is null
     data = Product.objects.filter(price__lt=300, name__contains='Smith')  # multiple filters
     data = Product.objects.filter(Q(price__lt=300) | Q(name__contains='Smith'))  # OR
+    data = Product.objects.filter(Q(price__lt=300) & Q(name__contains='Smith'))  # AND
          
     
 
