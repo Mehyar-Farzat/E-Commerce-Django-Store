@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Product, ProductImage, Review, Brand
-from django.db.models import Q 
+from django.db.models import Q , F 
 
 
 
@@ -22,6 +22,10 @@ def mydebug(request):
     data = Product.objects.filter(Q(price__lt=300) & Q(name__contains='Smith'))  # AND
     data = Product.objects.filter(~Q(name__contains='Smith'))  # NOT
     data = Product.objects.filter(Q(price__lt=300) & ~Q(name__contains='Smith')) # AND NOT
+    data = Product.objects.filter(quantity=F('price'))  # F() expressions
+    data = Product.objects.filter(price__gt=F('quantity') * 5)  # F() expressions
+
+
          
     
 
