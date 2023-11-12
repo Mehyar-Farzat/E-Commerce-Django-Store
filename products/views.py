@@ -12,6 +12,9 @@ def mydebug(request):
     data = Product.objects.filter(price__lte=200)  # lte = less than or equal 200
     data = Product.objects.filter(price__range=[100, 150])  # range = between 100 and 150
     data = Product.objects.filter(name__contains='Smith')  # contains = contains 'Smith'
+    data = Product.objects.filter(name__icontains='Smith')  # icontains = contains 'Smith' (case insensitive)
+    
+
 
 
     return render(request, 'products/debug.html', {'data': data})
