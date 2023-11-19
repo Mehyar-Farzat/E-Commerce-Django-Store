@@ -173,4 +173,4 @@ CACHES = {
 }
 
 
-LOCALE_PATHS = {"locale"}
+LOCALE_PATHS = ['locale']
