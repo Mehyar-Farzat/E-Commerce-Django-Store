@@ -40,7 +40,7 @@ msgstr "Marke"
 
 #: .\products\models.py:25
 msgid "SKU"
-msgstr ""
+msgstr "Artikelnummer"
 
 #: .\products\models.py:26
 msgid "Subtitle"
@@ -72,11 +72,11 @@ msgstr "Rezension"
 
 #: .\templates\base.html:177
 msgid "home"
-msgstr "Zuhause"
+msgstr "Startseite"
 
 #: .\templates\base.html:181
 msgid "shop"
-msgstr "Shop"
+msgstr "Einkaufen"
 
 #: .\templates\base.html:185
 msgid "Brands"
@@ -92,5 +92,5 @@ msgstr "rufen Sie uns an"
 
 #: .\templates\base.html:203
 msgid "email us"
-msgstr "Schicken Sie uns eine E-Mail"
+msgstr "Schreiben Sie uns eine E-Mail"
 
