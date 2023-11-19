@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from products.models import Product, Brand, Review
-from django.views.decorators.cache import cache_page
+#from django.views.decorators.cache import cache_page
 
 # Create your views here.
-@cache_page(60 * 60 * 24)
+#@cache_page(60 * 60 * 24)
 def home(request):
     
     brands = Brand.objects.all()[:10]
