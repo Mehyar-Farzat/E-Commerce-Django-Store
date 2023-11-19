@@ -74,9 +74,11 @@
                         <div class="header-top-select">
                             <div class="header-select">
                                 <i class="icofont-world"></i>
-                                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                
+
+                                <form id="language-form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                                     <input name="next" type="hidden" value="{{ redirect_to }}">
-                                    <select name="language" class="select">
+                                    <select id="language-select" name="language" class="select">
                                         {% get_current_language as LANGUAGE_CODE %}
                                         {% get_available_languages as LANGUAGES %}
                                         {% get_language_info_list for LANGUAGES as languages %}
@@ -86,8 +88,16 @@
                                             </option>
                                         {% endfor %}
                                     </select>
-                                    <input type="submit" value="Go">
                                 </form>
+
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                                <script>
+                                    $(document).ready(function() {
+                                        $('#language-select').change(function() {
+                                            $('#language-form').submit();
+                                        });
+                                    });
+                                </script>
 
                             </div>
                             
@@ -864,6 +874,8 @@
         <!--=====================================
                     JS LINK PART END
         =======================================-->
+        
+
     </body>
 </html>
 
