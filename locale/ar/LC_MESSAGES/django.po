@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 16:50+0100\n"
+"POT-Creation-Date: 2023-11-19 18:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
 #: .\products\models.py:20 .\products\models.py:47
 msgid "Name"
 msgstr "الاسم"
@@ -69,4 +70,30 @@ msgstr "اسم المستخدم"
 #: .\products\models.py:65
 msgid "Review"
 msgstr "التقييمات"
+
+#: .\templates\base.html:157
+msgid "home"
+msgstr "الصفحة الرئيسية"
+
+#: .\templates\base.html:161
+msgid "shop"
+msgstr "المتجر"
+
+#: .\templates\base.html:165
+#, fuzzy
+#| msgid "Brand"
+msgid "Brands"
+msgstr "العلامة التجارية"
+
+#: .\templates\base.html:169
+msgid "Orders"
+msgstr "الطلبات"
+
+#: .\templates\base.html:176
+msgid "call us"
+msgstr "اتصل بنا"
+
+#: .\templates\base.html:183
+msgid "email us"
+msgstr "مراسلتنا عبر البريد الإلكتروني"
 
