@@ -2,14 +2,14 @@ import datetime
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .models import Order, OrderDetail, Cart, CartDetail, Coupon
-from sittings.models import Deliveryfee
+from settings.models import DeliveryFee
 
 # Create your views here.
 
 
 def order_list(request):
     orders = Order.objects.all()
-    return render(request, 'orders/orders.html', {'orders' : orders})
+    return render(request,'orders/orders.html', {'orders' : orders})
 
 
 

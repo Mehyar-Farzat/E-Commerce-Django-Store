@@ -3,33 +3,43 @@ from django.views.generic import ListView, DetailView
 from .models import Product, ProductImage, Review, Brand
 from django.db.models import Q , F , Value
 from django.db.models.aggregates import Avg, Max, Min, Sum, Count
+from django.views.decorators.cache import cache_page
 
 
-
+@cache_page(60 * 1)
 def mydebug(request):
     #data = Product.objects.all()
+
     data = Product.objects.filter(price__gt=9000)   # gt = greater than 9000 
     data = Product.objects.filter(price__gte=9000)  # gte = greater than or equal 9000
     data = Product.objects.filter(price__lt=300)   # lt = less than 300
     data = Product.objects.filter(price__lte=200)  # lte = less than or equal 200
     data = Product.objects.filter(price__range=[100, 150])  # range = between 100 and 150
+    
     data = Product.objects.filter(name__contains='Smith')  # contains = contains 'Smith'
     data = Product.objects.filter(name__icontains='Smith')  # icontains = contains 'Smith' (case insensitive)
+    
     data = Product.objects.filter(name__startswith='Smith')  # startswith = starts with 'Smith'
     data = Product.objects.filter(name__endswith='Smith')  # endswith = ends with 'Smith'
+    
     data = Product.objects.filter(name__isnull=True)  # isnull = is null
     data = Product.objects.filter(price__lt=300, name__contains='Smith')  # multiple filters
+    
     data = Product.objects.filter(Q(price__lt=300) | Q(name__contains='Smith'))  # OR
     data = Product.objects.filter(Q(price__lt=300) & Q(name__contains='Smith'))  # AND
     data = Product.objects.filter(~Q(name__contains='Smith'))  # NOT
     data = Product.objects.filter(Q(price__lt=300) & ~Q(name__contains='Smith')) # AND NOT
+    
     data = Product.objects.filter(quantity=F('price'))  # F() expressions
     data = Product.objects.filter(price__gt=F('quantity') * 5)  # F() expressions
+    
     data = Product.objects.order_by('price')  # order by
     data = Product.objects.order_by('-price')  # order by descending
     data = Product.objects.order_by('price', '-name')  # order by multiple fields
     data = Product.objects.order_by('price').reverse()  # reverse order
+    
     data = Product.objects.order_by('?')  # random order
+    
     data = Product.objects.all()[:10]  # limit
     data = Product.objects.all()[10:20]  # offset
     data = Product.objects.all()[10:20:2]  # offset and limit
@@ -37,31 +47,22 @@ def mydebug(request):
     data = Product.objects.all()[:10:2]  # limit
     data = Product.objects.all()[::2]  # limit
     data = Product.objects.all()[10::2]  # offset
+    
     data = Product.objects.values('name', 'price')  # select
     data = Product.objects.values_list('name', 'price')  # select
     data = Product.objects.only('name', 'price')  # select
+    
     data = Product.objects.select_related('brand')  # join  # select_related() is for ForeignKey and OneToOneField
     data = Product.objects.prefetch_related('brand').all()  # join # prefetch_related() is for ManyToManyField
+   
     #data = Product.objects.aggregate(sum('price'))  # aggregate
     data = Product.objects.aggregate(Avg('price'), Max('price'), Min('price'), Sum('price'), Count('price'))  # aggregate
-
-
-
-
-
-
-
-
-
-
+   
+    data = Product.objects.annotate(New=Value('True')) # annotate
+    data = Product.objects.annotate(average_price=Avg('price'))  # annotate
+    data = Product.objects.annotate(average_price=Avg('price')).filter(average_price__gt=100)  # annotate
+    data = Product.objects.annotate(price_with_tax=F('price') * 1.1)  # annotate
     
-
-
-
-
-         
-    
-
 
 
     return render(request, 'products/debug.html', {'data': data})

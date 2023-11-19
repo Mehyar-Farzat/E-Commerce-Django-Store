@@ -6,9 +6,11 @@ from django.shortcuts import get_object_or_404
 from products.models import Product, Brand
 from .models import Cart, CartDetail, Order, OrderDetail, Coupon
 import datetime
+from settings.models import DeliveryFee
 
 
 class CartDetailCreateDeleteAPI(generics.GenericAPIView):
+    serializer_class = CartSerializer
 
     def get(self,request,*args, **kwargs):
         user = User.objects.get(username=self.kwargs['username']) # use username url to get a user
@@ -25,7 +27,7 @@ class CartDetailCreateDeleteAPI(generics.GenericAPIView):
         cart = Cart.objects.get(user=user, status='inprogress')
         cart_detail, created = CartDetail.objects.get_or_create(cart=cart, product=product)
         cart_detail.price = product.price
-        cart_detail.quantity = quantityc
+        cart_detail.quantity = quantity
         cart_detail.total = round(quantity*product.price,2)
         cart_detail.save()
 
@@ -84,7 +86,7 @@ class ApplyCouponAPI(generics.GenericAPIView):
 
 class OrderCreateAPI(generics.GenericAPIView):
     
-        def post(self,request,*args, **kwargs):
+        def get(self,request,*args, **kwargs):
             user = User.objects.get(username=self.kwargs['username'])
             cart = Cart.objects.get(user=user, status='inprogress')
             cart_detail = CartDetail.objects.filter(cart=cart)

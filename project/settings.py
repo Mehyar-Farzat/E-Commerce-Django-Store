@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     # my apps
 
     'products',
-    'sittings',
+    'settings',
     'orders',
     
 
@@ -86,7 +86,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'sittings.company_context_processor.get_company_data',
+                'settings.company_context_processor.get_company_data',
                 'orders.cart_context_processor.get_or_create_cart'
             ],
         },
@@ -163,3 +163,11 @@ REST_FRAMEWORK = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+    }
+}

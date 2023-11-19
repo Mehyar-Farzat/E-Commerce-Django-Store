@@ -9,14 +9,14 @@
     <ul>
 
         
-        <li>{{data}}</li>
+        {% comment %} <li>{{data}}</li> {% endcomment %}
         
-            {% comment %} 
+             
                         {% for object in data  %}
 
                             <li>{{ object.name }} - {{object.price}}</li>
 
-                        {% endfor %} {% endcomment %}
+                        {% endfor %} 
         
         
     </ul>
