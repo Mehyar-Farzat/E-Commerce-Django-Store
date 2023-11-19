@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 18:29+0100\n"
+"POT-Creation-Date: 2023-11-19 19:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,29 +71,28 @@ msgstr "اسم المستخدم"
 msgid "Review"
 msgstr "التقييمات"
 
-#: .\templates\base.html:157
+#: .\templates\base.html:167
 msgid "home"
 msgstr "الصفحة الرئيسية"
 
-#: .\templates\base.html:161
+#: .\templates\base.html:171
 msgid "shop"
 msgstr "المتجر"
 
-#: .\templates\base.html:165
+#: .\templates\base.html:175
 #, fuzzy
 #| msgid "Brand"
 msgid "Brands"
 msgstr "العلامة التجارية"
 
-#: .\templates\base.html:169
+#: .\templates\base.html:179
 msgid "Orders"
 msgstr "الطلبات"
 
-#: .\templates\base.html:176
+#: .\templates\base.html:186
 msgid "call us"
 msgstr "اتصل بنا"
 
-#: .\templates\base.html:183
+#: .\templates\base.html:193
 msgid "email us"
 msgstr "مراسلتنا عبر البريد الإلكتروني"
-
