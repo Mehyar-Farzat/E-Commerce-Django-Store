@@ -184,6 +184,7 @@ LANGUAGES = [
 ]
 
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://localhost:6379/0'      # for storing tasks in the database
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # for storing results in the database
+CELERY_RESULT_BACKEND = 'django-db'  # for storing results in the database
 
