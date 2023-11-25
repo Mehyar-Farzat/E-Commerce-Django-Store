@@ -2,9 +2,9 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html lang="en" {% if LANGUAGE_CODE == 'ar'  %} dir='rtl' {% endif %}>
+<html lang="en" {% if LANGUAGE_CODE == 'ar' %} dir="rtl" {% endif %}>
     <head>
-        <p>Current language: {{ LANGUAGE_CODE }}</p>
+        
         <!--=====================================
                     META TAG PART START
         =======================================-->
@@ -34,10 +34,8 @@
         <!-- FAVICON -->
         <link rel="icon" href="images/favicon.png">
 
-        {% if LANGUAGE_CODE = 'en' or LANGUAGE_CODE = 'de' %}
+        {% comment %} {% if LANGUAGE_CODE == 'en' or LANGUAGE_CODE == 'de' %} {% endcomment %}
         
-
-
             <!-- FONTS -->
             <link rel="stylesheet" href="{% static 'en/fonts/flaticon/flaticon.css' %}">
             <link rel="stylesheet" href="{% static 'en/fonts/icofont/icofont.min.css' %}">
@@ -53,7 +51,7 @@
             <link rel="stylesheet" href="{% static 'en/css/main.css' %}">
 
         
-        {% else %}
+        {% comment %} {% else %} {% endcomment %}
         
               <!-- FONTS -->
               <link rel="stylesheet" href="{% static 'ar/fonts/flaticon/flaticon.css' %}">
@@ -68,7 +66,7 @@
       
               <!-- CUSTOM -->
               <link rel="stylesheet" href="{% static 'ar/css/main.css' %}">
-        {% endif %}
+        {% comment %} {% endif %} {% endcomment %}
 
         
 
@@ -103,14 +101,14 @@
                                 <i class="icofont-world"></i>
                                 
 
-                                <form id="language-form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                {% comment %} <form id="language-form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                                     <input name="next" type="hidden" value="{{ redirect_to }}">
                                     <select id="language-select" name="language" class="select">
                                         {% get_current_language as LANGUAGE_CODE %}
                                         {% get_available_languages as LANGUAGES %}
                                         {% get_language_info_list for LANGUAGES as languages %}
                                         {% for language in languages %}
-                                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                            <option value="{{ language.code }}"{% if language.code = LANGUAGE_CODE %} selected{% endif %}>
                                                 {{ language.name_local }} ({{ language.code }})
                                             </option>
                                         {% endfor %}
@@ -124,7 +122,7 @@
                                             $('#language-form').submit();
                                         });
                                     });
-                                </script>
+                                </script> {% endcomment %}
 
                             </div>
                             
@@ -884,7 +882,7 @@
         =======================================-->
         <!-- VENDOR -->
 
-        {% if LANGUAGE_CODE== 'en' or LANGUAGE_CODE== 'de' %}
+        {% comment %} {% if LANGUAGE_CODE== 'en' or LANGUAGE_CODE== 'de' %} {% endcomment %}
         
         
             <script src="{% static 'en/vendor/bootstrap/jquery-1.12.4.min.js' %}"></script>
@@ -903,7 +901,7 @@
             <script src="{% static 'en/js/slick.js' %}"></script>
             <script src="{% static 'en/js/main.js' %}"></script> 
         
-        {% else %}
+        {% comment %} {% else %} {% endcomment %}
         
             <script src="{% static 'ar/vendor/bootstrap/jquery-1.12.4.min.js' %}"></script>
             <script src="{% static 'ar/vendor/bootstrap/popper.min.js' %}"></script>
@@ -921,7 +919,7 @@
             <script src="{% static 'ar/js/slick.js' %}"></script>
             <script src="{% static 'ar/js/main.js' %}"></script> 
             
-        {% endif %}
+        {% comment %} {% endif %} {% endcomment %}
         
         <!--=====================================
                     JS LINK PART END
