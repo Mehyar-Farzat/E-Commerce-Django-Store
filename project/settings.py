@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     "debug_toolbar",
+    'django_celery_results',
     
     # my apps
 
