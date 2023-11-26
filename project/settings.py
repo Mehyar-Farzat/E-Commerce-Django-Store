@@ -170,7 +170,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",
+        "LOCATION": "redis://redis:6379",
     }
 }
 
@@ -184,7 +184,7 @@ LANGUAGES = [
 ]
 
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'      # for storing tasks in the database
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # for storing results in the database
+#CELERY_BROKER_URL = 'redis://localhost:6379/0'      # for storing tasks in the database
+#CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # for storing results in the database
 CELERY_RESULT_BACKEND = 'django-db'  # for storing results in the database
 
