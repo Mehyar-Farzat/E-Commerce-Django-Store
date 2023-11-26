@@ -29,21 +29,21 @@ from .myfilters import ProductFilter
 
 # Class Based View:
 
-class ProductListAPI(generics.ListAPIView):
-    serializer_class = ProductListSerializer
-    queryset = Product.objects.all()
-    pagination_class = CustomPagination
-    #filter_backends = [DjangoFilterBackend]
+class ProductListAPI(generics.ListAPIView):        # list and create(adding like Editor)
+    serializer_class = ProductListSerializer       # return as json
+    queryset = Product.objects.all()               # return as list
+    pagination_class = CustomPagination            # custom pagination
+    #filter_backends = [DjangoFilterBackend]       # filter
     filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]   # filter and search and ordering filters
-    search_fields = ['name', 'tags']
-    filterset_fields = ['brand', 'flag']
-    ordering_fields = ['price']
-    filterset_class = ProductFilter                     # custom filter
+    search_fields = ['name', 'tags']               # search 
+    filterset_fields = ['brand', 'flag']           # filter by brand and flag 
+    ordering_fields = ['price']                    # ordering by price 
+    filterset_class = ProductFilter                # custom filter class 
 
 
-class ProductDetailAPI(generics.RetrieveAPIView):
-    serializer_class = ProductDetailSerializer
-    queryset = Product.objects.all()
+class ProductDetailAPI(generics.RetrieveAPIView):   # update and edite date 
+    serializer_class = ProductDetailSerializer      
+    queryset = Product.objects.all()                
 
 
 # class BrandListAPI(generics.ListAPIView):

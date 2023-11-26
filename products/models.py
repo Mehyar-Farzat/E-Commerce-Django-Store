@@ -1,23 +1,24 @@
 from django.db import models
-from django.utils import timezone
-from django.contrib.auth.models import User
-from taggit.managers import TaggableManager
-from django.utils.text import slugify
-from django.utils.translation import gettext_lazy as _
-
+from django.utils import timezone                        
+from django.contrib.auth.models import User              
+from taggit.managers import TaggableManager              
+from django.utils.text import slugify                    
+from django.utils.translation import gettext_lazy as _   # for translation
+ 
 # Create your models here.
 
-FLAG_CHOICES = (
 
-    ('Sale','Sale'),
-    ('Feature', 'Feature'),
+FLAG_CHOICES = (   
+
+    ('Sale','Sale'),   # first value is stored in database and second value is displayed in admin panel
+    ('Feature', 'Feature'),   
     ('New', 'New'),
 )
 
 
 
 class Product(models.Model):
-    name = models.CharField(_('Name'),max_length=120)
+    name = models.CharField(_('Name'),max_length=120)  
     image = models.ImageField(_('Image'),upload_to='product')
     price = models.FloatField(_('Price'))
     flag = models.CharField(_('Flag'),max_length=10, choices=FLAG_CHOICES)

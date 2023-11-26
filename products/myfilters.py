@@ -4,10 +4,10 @@ import django_filters
 
 
 
-class ProductFilter(filters.FilterSet):
-    class Meta:
-        model = Product
-        fields = {
+class ProductFilter(filters.FilterSet):    # create filter class 
+    class Meta:  
+        model = Product    
+        fields = { 
             
             'name' : ['contains'],
             'price': ['range'],

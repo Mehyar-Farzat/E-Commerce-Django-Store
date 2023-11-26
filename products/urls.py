@@ -8,10 +8,10 @@ from .api import ProductListAPI, ProductDetailAPI #BrandListAPI, BrandDetailAPI 
 
 urlpatterns = [
 
-    path('debug', mydebug),
-    path('', ProductList.as_view()),
-    path('brands/', BrandList.as_view()),
-    path('brands/<slug:slug>', BrandDetail.as_view()),
+    path('debug', mydebug),                                     # path for debug 
+    path('', ProductList.as_view()),                            # path for CBV  
+    path('brands/', BrandList.as_view()), 
+    path('brands/<slug:slug>', BrandDetail.as_view()),  
     path('<slug:slug>', ProductDetail.as_view()),
     path('api/list', ProductListAPI.as_view()),                   # path for CBV
     path('api/list/<int:pk>', ProductDetailAPI.as_view()),        # path for CBV

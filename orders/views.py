@@ -7,22 +7,22 @@ from settings.models import DeliveryFee
 # Create your views here.
 
 
-def order_list(request):
-    orders = Order.objects.all()
-    return render(request,'orders/orders.html', {'orders' : orders})
+def order_list(request):          # return all orders that belong to the exiting user 
+    orders = Order.objects.all()  # get all orders that belong to the exiting user 
+    return render(request,'orders/orders.html', {'orders' : orders})  # return orders.html with orders data 
 
 
 
-def checkout(request):
-    cart = Cart.objects.get(user=request.user, status='inprogress')
-    cart_detail = CartDetail.objects.filter(cart=cart)
-    delivery_fee = Deliveryfee.objects.last().fee
-    sub_total = cart.cart_total()
-    total = sub_total + delivery_fee
-    discount = 0
+def checkout(request):       # return checkout.html with cart data 
+    cart = Cart.objects.get(user=request.user, status='inprogress')   # get a cart of exiting user 
+    cart_detail = CartDetail.objects.filter(cart=cart)                # get all products of exiting cart 
+    delivery_fee = Deliveryfee.objects.last().fee                     # get delivery fee 
+    sub_total = cart.cart_total()                                     # get sub total of a cart 
+    total = sub_total + delivery_fee                                  # get total of a cart
+    discount = 0                                                      # set discount to 0
 
-    if request.method== 'POST':
-        code = request.POST['coupon_code']
+    if request.method== 'POST':                                       # if method is post 
+        code = request.POST['coupon_code']                            # get coupon code from form 
         #code = request.POST.get('coupon_code')  another way to get coupon
         #coupon = Coupon.objects.get(code=code)  # to get a code of coupon, but if there is no coupon, the site will be down
         coupon = get_object_or_404(Coupon, code=code) # to return error 404 if there is no coupon
