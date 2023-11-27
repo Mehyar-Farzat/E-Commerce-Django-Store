@@ -1,6 +1,6 @@
 from django.db import models  
 from django.contrib.auth.models import User    
-from utils import generate_code    
+from utils.generate_code import generate_code    
 
 # Create your models here.
 
