@@ -189,7 +189,7 @@ CELERY_RESULT_BACKEND = 'redis://redis:6379/0'  # for storing results in the dat
 CELERY_RESULT_BACKEND = 'django-db'  # for storing results in the database
 
 
-AUTHENTICATION_BACKENDS = [                           # add authentication backends 
+AUTHENTICATION_BACKENDS = [                           # add authentication backends  
 
     'accounts.backend.EmailOrUsernameLogin'            
 ] 

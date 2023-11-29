@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import SignupForm, ActivationForm
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from .models import Profile
 
 
@@ -8,15 +9,18 @@ from .models import Profile
 
 
 
-def signup(request):
-    if request.method == 'POST':
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            email = form.cleaned_data['email']
-            form.save()
+def signup(request):    # create signup view 
+    if request.method == 'POST':      # check if request method is POST 
+        form = SignupForm(request.POST)   # create form instance with POST data 
+        if form.is_valid():        # check if form is valid 
+            username = form.cleaned_data['username']   # get username from form 
+            email = form.cleaned_data['email']         # get email from form 
+            
 
-            profile = Profile.objects.get(user__username=username)
+
+            form.save()                          # save form
+
+            profile = Profile.objects.get(user__username=username)   # get profile by username 
 
             send_email(
 
@@ -27,14 +31,41 @@ def signup(request):
                 fail_silently=False,
             )
 
-            return redirect(f'/accounts/{username}/activate')
+            return redirect(f'/accounts/{username}/activate')    # redirect to activate view with username as argument
 
-    else:
-        form = SignupForm()
+    else:                                                        # if request method is GET
+        form = SignupForm()                                      # create form instance 
 
-    return render(request, 'registration/signup.html', {'form':form})
+    return render(request,'registration/signup.html', {'form':form})         # render signup template with form instance as context 
 
         
+
+def activate(request, username):                                            # create activate view 
+    profile = Profile.objects.get(user__username=username)                 # get profile by username 
+    if request.method == 'POST':                                           # check if request method is POST
+        form = ActivationForm(request.POST)                                # create form instance with POST data 
+        if form.is_valid():                                                # check if form is valid 
+            code = form.cleaned_data['code']                               # get code from form 
+            if code == profile.code:                                       # check if code is equal to profile code
+                profile.code = ''                                          # set profile code to empty string 
+
+                user = User.objects.get(username=profile.user.username)    # get user by username
+                user.is_active = True                                      # set user is_active field to True 
+                user.save()                                                # save user
+                profile.save()                                             # save profile
+
+                return redirect('/accounts/login')                         # redirect to login view
+
+    else:                                                                  # if request method is GET
+        form = ActivationForm()                                            # create form instance
+ 
+    return render(request,'registration/activate.html', {'form':form})     # render activate template with form instance as context
+
+
+    
+
+
+       
 
 
 
