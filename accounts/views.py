@@ -16,6 +16,9 @@ def signup(request):    # create signup view
             username = form.cleaned_data['username']   # get username from form 
             email = form.cleaned_data['email']         # get email from form 
             
+            # prevent user from signing up with an existing username or email without activating his account
+            user = form.save(commit=False)
+            user.is_active = False
 
 
             form.save()                          # save form
@@ -49,6 +52,8 @@ def activate(request, username):                                            # cr
             if code == profile.code:                                       # check if code is equal to profile code
                 profile.code = ''                                          # set profile code to empty string 
 
+
+                # the user is activated
                 user = User.objects.get(username=profile.user.username)    # get user by username
                 user.is_active = True                                      # set user is_active field to True 
                 user.save()                                                # save user
