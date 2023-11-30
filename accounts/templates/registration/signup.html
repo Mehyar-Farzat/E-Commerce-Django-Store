@@ -28,6 +28,7 @@
                                     <p>or</p>
                                 </div>
                                 <form class="user-form" methom="post">
+                                    {% csrf_token %}
                                     {% bootstrap_form form %}
                                     <div class="form-button">
                                         <button type="submit">Signup</button>

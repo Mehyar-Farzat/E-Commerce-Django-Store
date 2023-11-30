@@ -62,7 +62,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-     "django.middleware.locale.LocaleMiddleware", # for i18n-translation
+    "django.middleware.locale.LocaleMiddleware", # for i18n-translation
     'django.middleware.common.CommonMiddleware', 
     'debug_toolbar.middleware.DebugToolbarMiddleware', # for debug toolbar
     'django.middleware.csrf.CsrfViewMiddleware',
