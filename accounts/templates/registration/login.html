@@ -30,16 +30,17 @@
                                 <form class="user-form" method="post">
                                     {% csrf_token %}
                                     {% bootstrap_form form %}
+                                    <input type="hidden" name="next" value="{{ next }}">
                                 
                                     <div class="form-button">
                                         <button type="submit">login</button>
-                                        <p>Forgot your password?<a href="reset-password.html">reset here</a></p>
+                                        <p>Forgot your password?<a href="{% url 'password_reset' %}">reset here</a></p>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="user-form-remind">
-                            <p>Don't have any account?<a href="register.html">register here</a></p>
+                            <p>Don't have any account?<a href="/accounts/signup">register here</a></p>
                         </div>
                         <div class="user-form-footer">
                             <p>Greeny | &COPY; Copyright by <a href="#">Mironcoder</a></p>
@@ -55,35 +56,3 @@
 {% endblock body %}
 
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
-
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login">
-<input type="hidden" name="next" value="{{ next }}">
-</form>
-
-{# Assumes you set up the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
