@@ -196,5 +196,5 @@ AUTHENTICATION_BACKENDS = [                           # add authentication backe
 ] 
 
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'                          # redirect to home page after login
+LOGOUT_REDIRECT_URL = '/'                         # redirect to home page after logout

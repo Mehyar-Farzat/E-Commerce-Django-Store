@@ -1,16 +1,12 @@
 {% extends "auth_base.html" %}
 {% load django_bootstrap5 %}
 {% block body %}
-
-        <!--=====================================
-                    USER FORM PART START
-        =======================================-->
         <section class="user-form-part">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-sm-10 col-md-12 col-lg-12 col-xl-10">
                         <div class="user-form-logo">
-                            <a href="index.html"><img src="images/logo.png" alt="logo"></a>
+                            <a href="index.html"><img src="{{company_data.logo.url}}" alt="logo"></a>
                         </div>
                         <div class="user-form-card">
                             <div class="user-form-title">
@@ -31,7 +27,6 @@
                                     {% csrf_token %}
                                     {% bootstrap_form form %}
                                     <input type="hidden" name="next" value="{{ next }}">
-                                
                                     <div class="form-button">
                                         <button type="submit">login</button>
                                         <p>Forgot your password?<a href="{% url 'password_reset' %}">reset here</a></p>
@@ -49,10 +44,4 @@
                 </div>
             </div>
         </section>
-        <!--=====================================
-                    USER FORM PART END
-        =======================================-->
-
-{% endblock body %}
-
-
+        {% endblock body %}
