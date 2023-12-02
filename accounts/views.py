@@ -67,7 +67,8 @@ def activate(request, username):                                            # cr
     return render(request,'registration/activate.html', {'form':form})     # render activate template with form instance as context
 
 
-    
+def dashboard(request):
+    return render(request,'accounts/dashboard.html',{})
 
 
        
