@@ -33,10 +33,10 @@
         new Chart(ctx1, {
           type: 'bar',
           data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ['Users', 'Orders', 'Products', 'Brands', 'Reviews'],
             datasets: [{
               label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
+              data: ['{{users}}','{{orders}}','{{products}}','{{brands}}','{{reviews}}'],
               borderWidth: 1
             }]
           },
