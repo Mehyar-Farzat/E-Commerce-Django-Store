@@ -31,11 +31,11 @@
         const ctx1 = document.getElementById('myChart1');
       
         new Chart(ctx1, {
-          type: 'bar',
+          type: 'doughnut',
           data: {
             labels: ['Users', 'Orders', 'Products', 'Brands', 'Reviews'],
             datasets: [{
-              label: '# of Votes',
+              label: '# Count',
               data: ['{{users}}','{{orders}}','{{products}}','{{brands}}','{{reviews}}'],
               borderWidth: 1
             }]
@@ -58,7 +58,7 @@
           data: {
             labels: ['New', 'Sale', 'Feature'],
             datasets: [{
-              label: '# of Votes',
+              label: '# Products',
               data: ['{{new_products}}','{{sale_products}}','{{feature_products}}'],
               borderWidth: 1
             }]
