@@ -38,7 +38,7 @@ services:
 
 
   db:
-    image: postgresql:latest
+    image: postgres:latest
     ports:
       - "5432:5432"
     environment:
@@ -46,7 +46,7 @@ services:
       - POSTGRES_DB=mehyar
       - POSTGRES_PASSWORD=postgres
     volumes:
-      - postgres_data:/var/lib/postgres/postgres_data
+      - postgres_data:/var/lib/postgres/data
 
 volumes:
-  postgres_data
+  postgres_data:
