@@ -31,7 +31,7 @@ def signup(request):    # create signup view
 
             profile = Profile.objects.get(user__username=username)   # get profile by username 
 
-            send_email(
+            send_mail(
 
                 "Activate Your Account",
                 f"WELOCOME {username} TO OUR WEBSITE \nuse this code {profile.code} to activate your account",
@@ -71,6 +71,8 @@ def activate(request, username):                                            # cr
         form = ActivationForm()                                            # create form instance
  
     return render(request,'registration/activate.html', {'form':form})     # render activate template with form instance as context
+
+
 
 @login_required
 def dashboard(request):

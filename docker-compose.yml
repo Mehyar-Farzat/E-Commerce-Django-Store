@@ -33,4 +33,20 @@ services:
     command: celery -A project worker --loglevel=info
     environment:
       - CELERY_BROKER_URL = 'redis://redis:6379/0'
-      - CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+      - CELERY_BACKEND_RESULT = 'redis://redis:6379/0'
+
+
+
+  db:
+    image: postgresql:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=mehyar
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgres/postgres_data
+
+volumes:
+  postgres_data
