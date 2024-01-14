@@ -684,8 +684,15 @@
         <script>
 
             $(document).ready(function(){
-                
-                console.log('test')
+
+                $(document).on('submit','#reviewForm',function(event){
+                    // stop refresh
+                    evebt.preventDefault();
+
+                })
+
+
+
             })
 
             
