@@ -63,7 +63,7 @@ class Brand(models.Model):
 class Review(models.Model):
     user = models.ForeignKey(User,verbose_name=_('User') , on_delete= models.SET_NULL, null=True, blank=True, related_name='review_user')  
     product = models.ForeignKey(Product,verbose_name=_('Product'), on_delete=models.CASCADE , related_name='review_product')
-    review = models.TextField(_('Review'), max_length=500)
+    review = models.TextField(max_length=500)
     rate = models.IntegerField()
     created_at = models.DateTimeField(default=timezone.now)
 

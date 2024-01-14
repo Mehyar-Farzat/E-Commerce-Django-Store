@@ -121,7 +121,7 @@ class BrandDetail(ListView):     # this class to show all products for specific 
 
     
 def add_review(request,slug):
-    product = Product.objects.get(slug=slgu)
+    product = Product.objects.get(slug=slug)
     review = request.POST['review']     # OR ---> request.POST.get('review')
     rate = request.POST['rating']
 

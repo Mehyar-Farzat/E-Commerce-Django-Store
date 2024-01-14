@@ -10,7 +10,7 @@ def home(request):
     sale_products =  Product.objects.filter(flag='Sale')[:10]
     feature_products =  Product.objects.filter(flag='Feature')[:6]
     new_products =  Product.objects.filter(flag='New')[:10]
-    reviews = Review.objects.all()[:5]
+    reviews = Review.objects.all()[:2]
 
     return render(request, 'settings/home.html', {
 

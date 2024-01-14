@@ -60,7 +60,7 @@
                     <div class="col-lg-6">
                         
                         <div class="details-content">
-                            <h3 class="details-name"><a href="#">{{object}}</a></h3>
+                            <h3 class="details-name"><a href="#">{{object.name}}</a></h3>
                             <div class="details-meta">
                                 <p>SKU:<span>{{object.sku}}</span></p>
                                 <p>BRAND:<a href="#">{{object.brand}}</a></p>
@@ -133,36 +133,40 @@
                         <div class="product-details-frame">
                             <h3 class="frame-title">Description</h3>
                             <div class="tab-descrip">
-                                <p>{{object.description|safe}}</p>
+                                <p>{{object.description}}</p>
                             </div>
                         </div>
                         
                         <div class="product-details-frame">
-                            <h3 class="frame-title">Reviews</h3>
-                            <ul class="review-list">
-                                {% for review in product_review  %}
-                                <li class="review-item">
-                                    <div class="review-media">
-                                        <a class="review-avatar" href="#">
-                                            <img src="images/avatar/01.jpg" alt="review">
-                                        </a>
-                                        <h5 class="review-meta">
-                                            <a href="#">{{review.user}}</a>
-                                            <span>June 02, 2020</span>
-                                        </h5>
-                                    </div>
-                                    <ul class="review-rating">
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rate-blank"></li>
-                                    </ul>
-                                    <p class="review-desc">{{review.review}}</p>
-                                    
-                                    
-                                </li>
-                            {% endfor %}
+                            <h3 class="frame-title">Reviews (2)</h3>
+                            
+                            
+ {% for review in reviews %}
+
+        <li class="review-item">
+            <div class="review-media">
+                <a class="review-avatar" href="#">
+                    <img src="images/avatar/04.jpg" alt="review">
+                </a>
+                <h5 class="review-meta">
+                    <a href="#">{{review.user}}</a>
+                    <span>{{review.created_at}}</span>
+                </h5>
+            </div>
+            <ul class="review-rating">
+                <li class="icofont-ui-{% if review.rate > 0 %}rating{% else %}rate-blank{% endif %}"></li>
+                <li class="icofont-ui-{% if review.rate > 1 %}rating{% else %}rate-blank{% endif %}"></li>
+                <li class="icofont-ui-{% if review.rate > 2 %}rating{% else %}rate-blank{% endif %}"></li>
+                <li class="icofont-ui-{% if review.rate > 3 %}rating{% else %}rate-blank{% endif %}"></li>
+                <li class="icofont-ui-{% if review.rate > 4 %}rating{% else %}rate-blank{% endif %}"></li>
+            </ul>
+            <p class="review-desc">{{review.review}}</p>
+
+        </li>
+
+{% endfor %}
+
+
                             </ul>
                         </div>
 
@@ -697,7 +701,7 @@
                  PRODUCT RELATED PART END
         =======================================-->
 
-
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         
         {% endblock body %}
 

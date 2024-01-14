@@ -63,4 +63,6 @@ def add_reviews(n):
         
     
 
-add_brands(100)
+#add_brands(100)
+
+add_reviews(1000)
