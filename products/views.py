@@ -1,4 +1,4 @@
-from django.shortcuts import render  # render
+from django.shortcuts import render, redirect  # render
 from django.views.generic import ListView, DetailView  # generic views
 from .models import Product, ProductImage, Review, Brand  # models
 from django.db.models import Q , F , Value   # Q , F , Value
@@ -117,5 +117,23 @@ class BrandDetail(ListView):     # this class to show all products for specific 
         context = super().get_context_data(**kwargs)
         context["brand"] = Brand.objects.get(slug=self.kwargs['slug'])
         return context
+
+
     
-        
+def add_review(request,slug):
+    product = Product.objects.get(slug=slgu)
+    review = request.POST['review']     # OR ---> request.POST.get('review')
+    rate = request.POST['rating']
+
+
+    Review.objects.create(
+
+        user= request.user ,
+        product= product ,
+        review= review ,
+        rate= rate
+    )
+
+    return redirect(f'/products/{slug}')
+
+
