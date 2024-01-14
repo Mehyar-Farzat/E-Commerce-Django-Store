@@ -5,6 +5,9 @@ from django.db.models import Q , F , Value   # Q , F , Value
 from django.db.models.aggregates import Avg, Max, Min, Sum, Count  # aggregate
 from django.views.decorators.cache import cache_page  # cache
 
+from django.http import jsonResponse
+from django.template.loader import render_to_string
+
 from .tasks import send_email_task # celery task
 
 #@cache_page(60 * 1)
@@ -134,6 +137,8 @@ def add_review(request,slug):
         rate= rate
     )
 
-    return redirect(f'/products/{slug}')
+    reviews = Review.objects.filter(product=product)
+    html = render_to_string('includes/product_reviews.html',{'reviews':reviews, request:request})
+    return jsonResponse({'result':html})
 
 
