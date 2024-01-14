@@ -119,5 +119,3 @@ class BrandDetail(ListView):     # this class to show all products for specific 
         return context
     
         
-
-
