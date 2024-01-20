@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .models import Order, OrderDetail, Cart, CartDetail, Coupon
 from settings.models import DeliveryFee
+from products.models import Product
 
 # Create your views here.
 
@@ -64,3 +65,8 @@ def checkout(request):       # return checkout.html with cart data
         'total' : total,
         'discount' : discount
     })
+
+
+def add_to_cart(request):
+    product = Product.objects.get(id=request.POST['product_di'])
+    quantity = request.POST['quantity']
