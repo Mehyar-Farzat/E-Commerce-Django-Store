@@ -5,7 +5,7 @@ from django.db.models import Q , F , Value   # Q , F , Value
 from django.db.models.aggregates import Avg, Max, Min, Sum, Count  # aggregate
 from django.views.decorators.cache import cache_page  # cache
 
-from django.http import jsonResponse
+from django.http import JsonResponse
 from django.template.loader import render_to_string
 
 from .tasks import send_email_task # celery task
