@@ -682,36 +682,28 @@
 
         
         <script>
-
             $(document).ready(function(){
-
                 // add review
-                $(document).on('submit','#reviewForm',function(event){
+                $(document).on('submit', '#reviewForm', function(event) {
                     // stop refresh
                     event.preventDefault();
-
+        
                     // ajax
-
                     $.ajax({
                         type: $(this).attr('method'),
                         url: $(this).attr('action'),
                         data: $(this).serialize(),
                         dataType: 'json',
-                        success:function(response){
+                        success: function(response) {
                             $('#all-reviews').html(response['result']);
                             $('#reviewForm').trigger('reset');
-
                         },
-
-                        error:function(){
-
+                        error: function() {
+                            // Handle error if needed
                         }
                     })
-
                 })
-
             })
-
 
         </script>
         
