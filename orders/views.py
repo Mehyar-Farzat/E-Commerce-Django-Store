@@ -4,20 +4,21 @@ from django.shortcuts import get_object_or_404
 from .models import Order, OrderDetail, Cart, CartDetail, Coupon
 from settings.models import DeliveryFee
 from products.models import Product
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-
+@login_required
 def order_list(request):          # return all orders that belong to the exiting user 
     orders = Order.objects.all()  # get all orders that belong to the exiting user 
     return render(request,'orders/orders.html', {'orders' : orders})  # return orders.html with orders data 
 
 
-
+@login_required
 def checkout(request):       # return checkout.html with cart data 
     cart = Cart.objects.get(user=request.user, status='inprogress')   # get a cart of exiting user 
     cart_detail = CartDetail.objects.filter(cart=cart)                # get all products of exiting cart 
-    delivery_fee = Deliveryfee.objects.last().fee                     # get delivery fee 
+    delivery_fee = DeliveryFee.objects.last().fee                     # get delivery fee 
     sub_total = cart.cart_total()                                     # get sub total of a cart 
     total = sub_total + delivery_fee                                  # get total of a cart
     discount = 0                                                      # set discount to 0
@@ -66,7 +67,7 @@ def checkout(request):       # return checkout.html with cart data
         'discount' : discount
     })
 
-
+@login_required
 def add_to_cart(request):
     product = Product.objects.get(id=request.POST['product_id'])
     quantity = request.POST['quantity']

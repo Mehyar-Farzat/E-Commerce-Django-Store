@@ -10,6 +10,7 @@ urlpatterns = [
     path('', order_list),
     path('add-to-cart', add_to_cart),
     path('checkout' , checkout),
+    
 
 
     # api
