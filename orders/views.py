@@ -5,6 +5,8 @@ from .models import Order, OrderDetail, Cart, CartDetail, Coupon
 from settings.models import DeliveryFee
 from products.models import Product
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -84,4 +86,6 @@ def add_to_cart(request):
     cart_detail.total = round(int(quantity)*product.price,2)       # get total of a product 
     cart_detail.save()                                        # save a product in a cart 
 
-    return redirect(f'/products/{product.slug}')
+    cart_detail= CartDetail.objects.filter(cart=cart)
+    html = render_to_string('includes/cart_sidebar.html',{'cart_data' : cart , 'cart_detail_data' : cart_detail, request:request})
+    return JsonResponse({'result':html})
