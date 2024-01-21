@@ -1,5 +1,5 @@
 import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from .models import Order, OrderDetail, Cart, CartDetail, Coupon
 from settings.models import DeliveryFee
@@ -70,3 +70,17 @@ def checkout(request):       # return checkout.html with cart data
 def add_to_cart(request):
     product = Product.objects.get(id=request.POST['product_di'])
     quantity = request.POST['quantity']
+
+    cart = Cart.objects.get(user=request.user, status='inprogress')
+
+    cart_detail, created = CartDetail.objects.get_or_create(cart=cart, product=product)
+
+    # if not created:
+    #     cart_detail.quantity = cart_detail.quantity + quantity
+
+    cart_detail.price = product.price                         # get price of a product 
+    cart_detail.quantity = quantity                           # get quantity of a product 
+    cart_detail.total = round(quantity*product.price,2)       # get total of a product 
+    cart_detail.save()                                        # save a product in a cart 
+
+    return redirect(f'/products/{product.slug}')
