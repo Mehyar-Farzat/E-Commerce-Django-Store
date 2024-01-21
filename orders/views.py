@@ -68,7 +68,7 @@ def checkout(request):       # return checkout.html with cart data
 
 
 def add_to_cart(request):
-    product = Product.objects.get(id=request.POST['product_di'])
+    product = Product.objects.get(id=request.POST['product_id'])
     quantity = request.POST['quantity']
 
     cart = Cart.objects.get(user=request.user, status='inprogress')
@@ -80,7 +80,7 @@ def add_to_cart(request):
 
     cart_detail.price = product.price                         # get price of a product 
     cart_detail.quantity = quantity                           # get quantity of a product 
-    cart_detail.total = round(quantity*product.price,2)       # get total of a product 
+    cart_detail.total = round(int(quantity)*product.price,2)       # get total of a product 
     cart_detail.save()                                        # save a product in a cart 
 
     return redirect(f'/products/{product.slug}')
