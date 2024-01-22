@@ -1,1 +1,20 @@
-success payment
+{% extends "base.html" %}
+
+
+{% block body %}
+
+<section class="single-banner inner-section">
+    <div class="container my-5">
+        <div class="row my-5 py-5">
+            <div class="col-lg-6 mx-auto text-center p-4">
+                <h3> Payment Success</h3>
+                <p> we are preparing your order with code {{code}} </p>
+                <p> thanks for purchasing with us</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock body %}
