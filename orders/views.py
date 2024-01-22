@@ -8,6 +8,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 # Create your views here.
 
 @login_required
@@ -24,6 +29,8 @@ def checkout(request):       # return checkout.html with cart data
     sub_total = cart.cart_total()                                     # get sub total of a cart 
     total = sub_total + delivery_fee                                  # get total of a cart
     discount = 0                                                      # set discount to 0
+
+    pub_key= os.environ.get('STRIPE_API_KEY_Publishable')
 
     if request.method== 'POST':                                       # if method is post 
         code = request.POST['coupon_code']                            # get coupon code from form 
@@ -54,7 +61,8 @@ def checkout(request):       # return checkout.html with cart data
                         'delivery_fee' : delivery_fee,
                         'sub_total' : round(sub_total, 2),
                         'total' : total,
-                        'discount' : round(coupon_value, 2)
+                        'discount' : round(coupon_value, 2),
+                        'pub_key' : pub_key
                     })
 
 
@@ -66,7 +74,8 @@ def checkout(request):       # return checkout.html with cart data
         'delivery_fee' : delivery_fee,
         'sub_total' : sub_total,
         'total' : total,
-        'discount' : discount
+        'discount' : discount,
+        'pub_key' : pub_key
     })
 
 @login_required
