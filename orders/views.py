@@ -98,7 +98,11 @@ def process_payment(request):
     pass
 
 def payment_success(request):
-    pass
+
+    return render(request, 'orders/success.htm',{'code':'code'})
+    
 
 def payment_failed(request):
+
+    return render(request, 'orders/failed.html', {'code':'code'})
     pass
