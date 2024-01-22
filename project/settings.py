@@ -222,3 +222,6 @@ AUTHENTICATION_BACKENDS = [                           # add authentication backe
 
 LOGIN_REDIRECT_URL = '/'                          # redirect to home page after login
 LOGOUT_REDIRECT_URL = '/'                         # redirect to home page after logout
+
+
+DOMAIN='127.0.0.1:8000'
