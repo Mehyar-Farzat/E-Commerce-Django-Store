@@ -74,7 +74,7 @@ def add_to_cart(request):
     product = Product.objects.get(id=request.POST['product_id'])
     quantity = request.POST['quantity']
 
-    cart = Cart.objects.get(user=request.user, status='inprogress')
+    cart = Cart.objects.get(user=request.user, status='inprogress')   # get a cart
 
     cart_detail, created = CartDetail.objects.get_or_create(cart=cart, product=product)
 
@@ -86,6 +86,9 @@ def add_to_cart(request):
     cart_detail.total = round(int(quantity)*product.price,2)       # get total of a product 
     cart_detail.save()                                        # save a product in a cart 
 
+    cart = Cart.objects.get(user=request.user, status='inprogress')    # get a cart one more  
     cart_detail= CartDetail.objects.filter(cart=cart)
+    total = cart.cart_total()
+    
     html = render_to_string('includes/cart_sidebar.html',{'cart_data' : cart , 'cart_detail_data' : cart_detail, request:request})
-    return JsonResponse({'result':html})
+    return JsonResponse({'result':html, 'total':total})
