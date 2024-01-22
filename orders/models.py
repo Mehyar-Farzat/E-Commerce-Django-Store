@@ -54,7 +54,7 @@ class Cart(models.Model):
         total = 0
         for object in self.cart_detail.all():
             total += object.total
-        return total
+        return round(total,2)
 
 class CartDetail(models.Model):
     cart = models.ForeignKey(Cart, related_name='cart_detail', on_delete=models.CASCADE)
