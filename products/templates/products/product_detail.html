@@ -721,7 +721,10 @@
                             $('#cart_sidebar').html(response['result'])
                             
                             var total = $('#total_price')  
-                            total.text(response['total'])  
+                            total.text(response['total'])
+                            
+                            var total = $('#cart_count')  
+                            total.text(response['cart_count'])
                         
                         },  
                     
