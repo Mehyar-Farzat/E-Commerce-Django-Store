@@ -145,6 +145,10 @@ def process_payment(request):
     
 
 def payment_success(request):
+    cart = Cart.objects.get(user=request.user, status='inprogress')
+    cart_detail= CartDetail.objects.filter(cart=cart)
+
+    
 
     return render(request, 'orders/success.htm',{'code':'code'})
     
