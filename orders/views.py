@@ -10,7 +10,7 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 
 from django.conf import settings
-import strip
+import stripe
 from dotenv import load_dotenv
 import os
 
@@ -110,8 +110,8 @@ def process_payment(request):
         cart = Cart.objects.get(user=request.user, status='inprogress')    # get a cart one more  
         delivery_fee = DeliveryFee.objects.last().fee
 
-        if cart.order_total_discount():
-            total = cart.cart_total() + delivery_fee
+        if cart.order_total_discount:
+            total = cart.order_total_discount() + delivery_fee
 
         else:
             total = cart.cart_total() + delivery_fee
@@ -122,7 +122,7 @@ def process_payment(request):
         request.session['order_code'] = code
         request.session.save()
 
-        strip.api_key = os.environ.get('STRIPE_API_KEY_SECRET')
+        stripe.api_key = os.environ.get('STRIPE_API_KEY_SECRET')
 
         checkout_session = stripe.checkout.Session.create(
                 line_items=[
@@ -147,7 +147,7 @@ def process_payment(request):
 
         return JsonResponse({'session' : checkout_session})
     
-
+@login_required
 def payment_success(request):
     cart = Cart.objects.get(user=request.user, status='inprogress')
     cart_detail= CartDetail.objects.filter(cart=cart)
