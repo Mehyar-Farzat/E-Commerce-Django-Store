@@ -5,6 +5,7 @@ from .models import Order, OrderDetail, Cart, CartDetail, Coupon
 from settings.models import DeliveryFee
 from products.models import Product
 from django.contrib.auth.decorators import login_required
+from utils.generate_code import generate_code
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 
@@ -116,6 +117,7 @@ def process_payment(request):
         else:
             total = cart.cart_total() + delivery_fee
 
+        code = generate_code()
 
         checkout_session = stripe.checkout.Session.create(
                 line_items=[
