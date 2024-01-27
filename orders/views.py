@@ -118,6 +118,10 @@ def process_payment(request):
 
         code = generate_code()
 
+        # store code in session
+        request.session['order_code'] = code
+        request.session.save()
+
         strip.api_key = os.environ.get('STRIPE_API_KEY_SECRET')
 
         checkout_session = stripe.checkout.Session.create(
