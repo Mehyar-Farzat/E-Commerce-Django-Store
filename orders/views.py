@@ -151,14 +151,17 @@ def process_payment(request):
 def payment_success(request):
     cart = Cart.objects.get(user=request.user, status='inprogress')
     cart_detail= CartDetail.objects.filter(cart=cart)
-
+    
+    # get a code from session
+    order_code = request.session.get('order_code')
+    
     # create a new order after payment
     new_order = Order.objects.create( 
                 
                 user=request.user, 
                 coupon= cart.coupon,
                 order_total_discount =cart.order_total_discount,
-                
+                code = order_code
                 )
 
     # create order detail ( from cart detail to order detail)
@@ -176,7 +179,7 @@ def payment_success(request):
     cart.status = 'completed'                              # change status of a cart to completed
     cart.save()
 
-    return render(request, 'orders/success.htm',{'code':'code'})
+    return render(request, 'orders/success.htm',{'code': order_code})
     
 
 def payment_failed(request):
