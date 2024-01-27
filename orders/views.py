@@ -110,6 +110,12 @@ def process_payment(request):
         cart_detail= CartDetail.objects.filter(cart=cart)
         delivery_fee = DeliveryFee.objects.last().fee
 
+        if cart.order_total_discount():
+            total = cart.cart_total() + delivery_fee
+
+        else:
+            total = cart.cart_total() + delivery_fee
+
 
         checkout_session = stripe.checkout.Session.create(
                 line_items=[
