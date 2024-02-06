@@ -57,7 +57,9 @@ def checkout(request):       # return checkout.html with cart data
                 cart.save()
                 coupon.save()
 
-                return render(request, 'orders/checkout.html', {
+                 
+
+                html = render_to_string('includes/checkout_table.html',{
 
                         'cart' : cart,
                         'cart_detail' : cart_detail,
@@ -66,7 +68,8 @@ def checkout(request):       # return checkout.html with cart data
                         'total' : total,
                         'discount' : round(coupon_value, 2),
                         'pub_key' : pub_key
-                    })
+                })
+                return JsonResponse({'result':html})
 
 
 
