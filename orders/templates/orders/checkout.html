@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="chekout-coupon">
                                     <button class="coupon-btn">Do you have a coupon code?</button>
-                                    <form class="coupon-form" method = 'post'>
+                                    <form class="coupon-form" method = 'post' id = 'coupon_form'>
                                         {% csrf_token %}
                                         <input type="text" name = "coupon_code" placeholder="Enter your coupon code">
                                         <button type="submit"><span>apply</span></button>
@@ -374,8 +374,8 @@
         <script>
             $(document).ready(function(){
 
-                // add review
-                $(document).on('submit', '#reviewForm', function(event) {
+                
+                $(document).on('submit', '#coupon_form', function(event) {
                     // stop refresh
                     event.preventDefault();
         
@@ -386,8 +386,8 @@
                         data: $(this).serialize(),
                         dataType: 'json',
                         success: function(response) {
-                            $('#all-reviews').html(response['result']);
-                            $('#reviewForm').trigger('reset');
+                            $('#charge').html(response['result']);
+                            
                         },
                         error: function() {
                             // Handle error if needed
