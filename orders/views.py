@@ -30,7 +30,7 @@ def checkout(request):       # return checkout.html with cart data
     cart_detail = CartDetail.objects.filter(cart=cart)                # get all products of exiting cart 
     delivery_fee = DeliveryFee.objects.last().fee                     # get delivery fee 
     sub_total = cart.cart_total()                                     # get sub total of a cart 
-    total = sub_total + delivery_fee                                  # get total of a cart
+    total = roudn(sub_total + delivery_fee, 2)                                  # get total of a cart
     discount = 0                                                      # set discount to 0
 
     pub_key= os.environ.get('STRIPE_API_KEY_Publishable')

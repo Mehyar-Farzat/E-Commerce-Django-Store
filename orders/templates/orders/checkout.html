@@ -80,25 +80,8 @@
                                         <button type="submit"><span>apply</span></button>
                                     </form>
                                 </div>
-                                <div class="checkout-charge">
-                                    <ul>
-                                        <li>
-                                            <span>Sub total</span>
-                                            <span>${{sub_total}}</span>
-                                        </li>
-                                        <li>
-                                            <span>delivery fee</span>
-                                            <span>${{delivery_fee}}</span>
-                                        </li>
-                                        <li>
-                                            <span>discount</span>
-                                            <span>${{discount}}</span>
-                                        </li>
-                                        <li>
-                                            <span>Total<small>(Incl. VAT)</small></span>
-                                            <span>${{total}}</span>
-                                        </li>
-                                    </ul>
+                                <div class="checkout-charge" id="charge">
+                                    {% include "includes/checkout_table.html" %}
                                 </div>
                             </div>
                         </div>
@@ -386,6 +369,39 @@
             
 
         </script>
+
+
+        <script>
+            $(document).ready(function(){
+
+                // add review
+                $(document).on('submit', '#reviewForm', function(event) {
+                    // stop refresh
+                    event.preventDefault();
+        
+                    // ajax
+                    $.ajax({
+                        type: $(this).attr('method'),
+                        url: $(this).attr('action'),
+                        data: $(this).serialize(),
+                        dataType: 'json',
+                        success: function(response) {
+                            $('#all-reviews').html(response['result']);
+                            $('#reviewForm').trigger('reset');
+                        },
+                        error: function() {
+                            // Handle error if needed
+                        }
+                    })
+                })
+
+            })
+        </script>
+
+
+
+
+
 {% endblock body %}
 
 
