@@ -166,7 +166,7 @@ def payment_success(request):
 
     # create order detail ( from cart detail to order detail)
 
-    for object in cart_detail():                            # loop to get all products of a cart 
+    for object in cart_detail:                            # loop to get all products of a cart 
         OrderDetail.objects.create(                         # create order detail 
 
             order= new_order, 
@@ -179,7 +179,7 @@ def payment_success(request):
     cart.status = 'completed'                              # change status of a cart to completed
     cart.save()
 
-    return render(request, 'orders/success.htm',{'code': order_code})
+    return render(request, 'orders/success.html',{'code': order_code})
     
 
 def payment_failed(request):

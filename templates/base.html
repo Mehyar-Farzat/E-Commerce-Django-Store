@@ -159,10 +159,17 @@
                     <a href="index.html" class="header-logo">
                         <img src="{{company_data.logo.url}}" alt="logo">
                     </a>
+                    {% if user.is_authenticated %}
+                    <img src="images/user.png" alt="user">
+                    {% else %}
                     <a href="login.html" class="header-widget" title="My Account">
-                        <img src="images/user.png" alt="user">
-                        <span>join</span>
+                        <span>Login</span>
                     </a>
+                    <a href="login.html" class="header-widget" title="My Account">
+                        <span>Signup</span>
+                    </a>
+                    {% endif %}
+                    
 
                     <form class="header-form">
                         <input type="text" placeholder="Search anything...">
